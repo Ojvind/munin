@@ -1,40 +1,19 @@
 import { useRef, useState } from 'react';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { useMutation, gql } from '@apollo/client';
 import DefaultImage from '../../assets/upload-photo-here.png';
+
+const GENERATE_UPLOAD_URL = gql`
+  mutation($filename: String!, $contentType: String!) {
+    generateUploadUrl(filename: $filename, contentType: $contentType)
+  }
+`;
 
 export function useImageUpload(initialPortraitImageUrl) {
   const [avatarURL, setAvatarURL] = useState(initialPortraitImageUrl ?? DefaultImage);
   const [portraitimageurl, setPortraitImageUrl] = useState(initialPortraitImageUrl);
   const fileUploadRef = useRef();
 
-  const minioEndpoint = process.env.REACT_APP_MINIO_ENDPOINT || '';
-  const minioUserName = process.env.REACT_APP_MINIO_USERNAME || '';
-  const minioPassword = process.env.REACT_APP_MINIO_PASSWORD || '';
-  const minioBucketName = process.env.REACT_APP_MINIO_BUCKET_NAME || '';
-
-  const s3Client = new S3Client({
-    endpoint: minioEndpoint,
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: minioUserName,
-      secretAccessKey: minioPassword,
-    },
-    forcePathStyle: true, // Required for MinIO
-  });
-
-  async function uploadFile(key, fileContent) {
-    const command = new PutObjectCommand({
-      Bucket: minioBucketName,
-      Key: key,
-      Body: fileContent,
-    });
-    try {
-      const response = await s3Client.send(command);
-      console.log('File uploaded successfully', response);
-    } catch (err) {
-      console.error('Error uploading file', err);
-    }
-  }
+  const [generateUploadUrl] = useMutation(GENERATE_UPLOAD_URL);
 
   const handleImageUpload = (event) => {
     event.preventDefault();
@@ -43,12 +22,24 @@ export function useImageUpload(initialPortraitImageUrl) {
 
   const uploadImageDisplay = async () => {
     const uploadedFile = fileUploadRef.current.files[0];
-    const cachedURL = URL.createObjectURL(uploadedFile);
-    setAvatarURL(cachedURL);
-    const response = await fetch(cachedURL);
-    const data = await response.arrayBuffer();
-    setPortraitImageUrl(`${minioEndpoint}/${minioBucketName}/${uploadedFile.name}`);
-    uploadFile(uploadedFile.name, data);
+    setAvatarURL(URL.createObjectURL(uploadedFile));
+
+    const { data } = await generateUploadUrl({
+      variables: {
+        filename: uploadedFile.name,
+        contentType: uploadedFile.type,
+      },
+    });
+
+    const presignedUrl = data.generateUploadUrl;
+
+    await fetch(presignedUrl, {
+      method: 'PUT',
+      body: uploadedFile,
+      headers: { 'Content-Type': uploadedFile.type },
+    });
+
+    setPortraitImageUrl(presignedUrl.split('?')[0]);
   };
 
   return {

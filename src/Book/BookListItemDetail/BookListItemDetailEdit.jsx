@@ -33,7 +33,7 @@ function BookListItemDetailEdit({
     refetchQueries: [
       {
         query: GET_BOOK,
-        variables: { id: book.id },
+        variables: { bookId: book.id },
       },
     ],
   });
