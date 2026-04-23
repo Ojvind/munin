@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -38,6 +38,7 @@ const Label = ({
   isLink,
   url,
   className,
+  toolTip, // eslint-disable-line no-unused-vars
   children,
   ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => {
@@ -84,7 +85,7 @@ const Label = ({
 Label.propTypes = {
   variant: PropTypes.string,
   isLink: PropTypes.bool,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   toolTip: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string.isRequired,
@@ -93,6 +94,7 @@ Label.propTypes = {
 Label.defaultProps = {
   variant: 'h1',
   isLink: false,
+  url: '',
   toolTip: '',
   className: '',
 };

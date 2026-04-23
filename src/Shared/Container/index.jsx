@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 
-const Container = ({
-  children,
-}) => (
+const Container = React.forwardRef(({ children }, ref) => (
   <Box
+    ref={ref}
     sx={{
       position: 'absolute',
       top: '50%',
@@ -22,7 +21,9 @@ const Container = ({
   >
     {children}
   </Box>
-);
+));
+
+Container.displayName = 'Container';
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
