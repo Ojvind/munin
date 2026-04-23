@@ -31,10 +31,9 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
+    graphQLErrors.forEach(({ message }) => {
       const isAuthError = message === 'Not authenticated as user.'
         || message === 'Your session expired. Sign in again.';
       if (isAuthError && localStorage.getItem('token')) {
@@ -42,9 +41,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         window.dispatchEvent(new Event('auth-error'));
       }
     });
-  }
-  if (networkError) {
-    console.log(`[Network error]: ${networkError}`);
   }
 });
 
