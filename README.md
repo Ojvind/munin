@@ -2,8 +2,6 @@
 
 A react App implemented from all the steps in the tutorial: [A complete React with Apollo and GraphQL Tutorial](https://www.robinwieruch.de/react-graphql-apollo-tutorial).
 
-# Munin
-
 Munin är en app för att hålla koll på författare och böcker du läst.
 
 Uppkallad efter Odens korp som representerar minnet — varje dag flyger Munin (tillsammans med Hugin) ut
