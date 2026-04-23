@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,13 +15,10 @@ const SignIn = () => {
 
   const [signIn, { loading }] = useMutation(SIGN_IN, {
     onCompleted: (data) => {
-      console.log('onCompleted data:', data);
-      console.log('token:', data?.signIn?.token);
       setToken(data?.signIn?.token);
       navigate(WRITERS);
     },
-    onError: (err) => {
-      console.log('onError:', err.message);
+    onError: () => {
       setError('Fel användarnamn eller lösenord.');
     },
   });

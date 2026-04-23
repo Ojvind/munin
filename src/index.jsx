@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import {
@@ -23,7 +22,6 @@ const httpLink = new HttpLink({ uri: API_BASE_URL });
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token');
-  console.log('authLink - token i localStorage:', token ? 'finns' : 'saknas');
   return {
     headers: {
       ...headers,
