@@ -8,8 +8,12 @@ const GENERATE_UPLOAD_URL = gql`
   }
 `;
 
+const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
+
 export function useImageUpload(initialPortraitImageUrl) {
-  const [avatarURL, setAvatarURL] = useState(initialPortraitImageUrl ?? DefaultImage);
+  const [avatarURL, setAvatarURL] = useState(
+    initialPortraitImageUrl ? `${IMAGES_URL}/${initialPortraitImageUrl}` : DefaultImage,
+  );
   const [portraitimageurl, setPortraitImageUrl] = useState(initialPortraitImageUrl);
   const fileUploadRef = useRef();
 
@@ -39,7 +43,7 @@ export function useImageUpload(initialPortraitImageUrl) {
       headers: { 'Content-Type': uploadedFile.type },
     });
 
-    setPortraitImageUrl(presignedUrl.split('?')[0]);
+    setPortraitImageUrl(presignedUrl.split('?')[0].split('/').pop());
   };
 
   return {

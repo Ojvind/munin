@@ -4,6 +4,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import Label from '../../Shared/components/Label';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
+const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
+
 function BookListItemDetailView({
   book,
   avatarURL,
@@ -18,7 +20,7 @@ function BookListItemDetailView({
       <div className="list-item-detail__row">
         <div className="list-item-detail__row__column">
           <img
-            src={avatarURL || book.portraitimageurl || DefaultImage}
+            src={avatarURL || (book.portraitimageurl ? `${IMAGES_URL}/${book.portraitimageurl}` : DefaultImage)}
             alt="Avatar"
             width="200px"
           />

@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DefaultImage from '../../../assets/upload-photo-here.png';
 
+const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
+
 const BookImageCell = ({ params }) => (
   <div>
     <img
-      src={params.value ? params.value : DefaultImage}
+      src={params.value ? `${IMAGES_URL}/${params.value}` : DefaultImage}
       alt="Book cover"
       width="75px"
     />
