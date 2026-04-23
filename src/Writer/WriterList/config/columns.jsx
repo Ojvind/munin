@@ -35,7 +35,15 @@ const columns = [
     field: 'nationality',
     headerName: 'Nazionalità',
     width: 100,
-    renderCell: (params) => <div>{params.row.nationality}</div>,
+    renderCell: (params) => (
+      params.row.nationality ? (
+        <img
+          alt={params.row.nationality}
+          src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${params.row.nationality}.svg`}
+          width="30px"
+        />
+      ) : null
+    ),
   },
   {
     field: 'delete',
