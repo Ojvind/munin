@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
 import Label from '../../Shared/components/Label';
@@ -45,11 +47,18 @@ function WriterListItemDetail(props) {
 
   return (
     <div>
-      <div className="list-item-detail">
+      <div className="list-item-detail" style={{ position: 'relative' }}>
         {
           (!edit)
             ? (
               <div className="full-width">
+                <IconButton
+                  size="small"
+                  onClick={() => toggleEdit(true)}
+                  style={{ position: 'absolute', top: 8, right: 8 }}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
                 <div className="list-item-detail__row">
                   <div className="list-item-detail__row__column">
                     <img
@@ -136,26 +145,6 @@ function WriterListItemDetail(props) {
                     <ErrorMessage error={mutationError} />
                   </div>
                 )}
-              </div>
-            )
-        }
-      </div>
-      <div>
-        {
-          (!edit)
-            ? (
-              <div>
-                <Button
-                  onClick={() => toggleEdit(!edit)}
-                >
-                  {t('writer.edit')}
-                </Button>
-                <br />
-              </div>
-            )
-            : (
-              <div>
-                <br />
               </div>
             )
         }

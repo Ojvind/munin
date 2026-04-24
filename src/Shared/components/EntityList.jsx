@@ -91,8 +91,8 @@ const EntityList = ({
           },
           '& .MuiDataGrid-sortIcon': { opacity: 1 },
           '& .MuiDataGrid-iconSeparator': { display: 'none' },
-          '& .MuiDataGrid-columnHeader:nth-child(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
-          '& .MuiDataGrid-row .MuiDataGrid-cell:nth-child(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
+          '& .MuiDataGrid-columnHeader:nth-of-type(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
+          '& .MuiDataGrid-row .MuiDataGrid-cell:nth-of-type(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
         }}
       />
       <FetchMore

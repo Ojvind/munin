@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 import Container from '../../Shared/Container';
 
 import { GET_WRITER } from '../queries';
@@ -13,6 +14,7 @@ import CreateBook from '../../Book/CreateBook';
 import WriterListItemDetail from './WriterListItemDetail';
 
 const WriterListItemDetailContainer = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -35,11 +37,16 @@ const WriterListItemDetailContainer = () => {
         <WriterListItemDetail
           writer={data.writer}
         />
-        <br />
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem',
+        }}
+        >
+          <h2 style={{ margin: 0 }}>{t('nav.books')}</h2>
+          <Button onClick={handleOpen}>{t('book.createNew')}</Button>
+        </div>
         <BookContainer
           writerId={data.writer.id}
         />
-        <Button onClick={handleOpen}>Aggiungi nuovo libro</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -47,7 +54,7 @@ const WriterListItemDetailContainer = () => {
           aria-describedby="modal-modal-description"
         >
           <Container>
-            <CreateBook writerId={data.writer.id} />
+            <CreateBook writerId={data.writer.id} onSuccess={handleClose} />
           </Container>
         </Modal>
       </div>

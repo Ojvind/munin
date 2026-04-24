@@ -13,7 +13,7 @@ import SaveButton from '../../Shared/components/SaveButton';
 import ErrorMessage from '../../Error';
 
 const CreateBook = (props) => {
-  const { writerId } = props;
+  const { writerId, onSuccess } = props;
 
   const [title, onTitleChange] = useState('');
   const [url, onUrlChange] = useState('');
@@ -41,7 +41,7 @@ const CreateBook = (props) => {
   const handleSave = async () => {
     try {
       await createBook();
-      // Optionally reset form or show success
+      if (onSuccess) onSuccess();
     } catch (e) {
       // Error will be shown by error prop
     }
@@ -85,6 +85,11 @@ const CreateBook = (props) => {
 
 CreateBook.propTypes = {
   writerId: PropTypes.string.isRequired,
+  onSuccess: PropTypes.func,
+};
+
+CreateBook.defaultProps = {
+  onSuccess: null,
 };
 
 export default CreateBook;

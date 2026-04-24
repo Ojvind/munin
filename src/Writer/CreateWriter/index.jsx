@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 import Input from '../../Shared/components/Input';
 import SaveButton from '../../Shared/components/SaveButton';
@@ -8,7 +9,7 @@ import { GET_WRITERS } from '../queries';
 import './create-writer.css';
 import ErrorMessage from '../../Error';
 
-function CreateWriter() {
+function CreateWriter({ onSuccess }) {
   const [name, onNameChange] = useState('');
   const [surname, onSurnameChange] = useState('');
   const [homepage, onHomepageChange] = useState('');
@@ -30,7 +31,7 @@ function CreateWriter() {
   const handleSave = async () => {
     try {
       await createWriter();
-      // Optionally reset form or show success
+      onSuccess();
     } catch (e) {
       // Error will be shown by error prop
     }
@@ -65,5 +66,9 @@ function CreateWriter() {
     </div>
   );
 }
+
+CreateWriter.propTypes = {
+  onSuccess: PropTypes.func.isRequired,
+};
 
 export default CreateWriter;
