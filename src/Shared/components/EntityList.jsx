@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   DataGrid, itIT, svSE, enUS,
@@ -7,6 +7,10 @@ import { useTranslation } from 'react-i18next';
 import FetchMore from '../../FetchMore';
 
 const LOCALE_MAP = { it: itIT, sv: svSE, en: enUS };
+
+const ROW_HEIGHT = 52;
+const HEADER_HEIGHT = 56;
+const FOOTER_HEIGHT = 52;
 
 const EntityList = ({
   entities,
@@ -20,10 +24,23 @@ const EntityList = ({
   checkboxSelection = false,
   disableSelectionOnClick = false,
   height = '60em',
+  maxRows = null,
   children,
 }) => {
   const { i18n } = useTranslation();
   const locale = LOCALE_MAP[i18n.language] || itIT;
+  const [visibleCount, setVisibleCount] = useState(entities.edges.length);
+
+  const handleStateChange = useCallback((state) => {
+    const lookup = state?.filter?.visibleRowsLookup;
+    if (lookup) {
+      setVisibleCount(Object.values(lookup).filter(Boolean).length);
+    }
+  }, []);
+
+  const computedHeight = maxRows != null
+    ? `${Math.min(visibleCount, maxRows) * ROW_HEIGHT + HEADER_HEIGHT + FOOTER_HEIGHT}px`
+    : height;
 
   const updateQuery = (previousResult, { fetchMoreResult }) => {
     if (!fetchMoreResult) {
@@ -47,6 +64,7 @@ const EntityList = ({
     <div className={className}>
       <DataGrid
         className={`${className}__datagrid`}
+        onStateChange={handleStateChange}
         rows={entities.edges}
         columns={columns}
         pageSize={pageSize}
@@ -56,11 +74,11 @@ const EntityList = ({
         localeText={locale.components.MuiDataGrid.defaultProps.localeText}
         autoHeight={false}
         sx={{
-          height: `${height}`,
-          maxHeight: `${height}`,
+          height: computedHeight,
+          maxHeight: computedHeight,
           '& .MuiDataGrid-root': {
-            height: `${height}`,
-            maxHeight: `${height}`,
+            height: computedHeight,
+            maxHeight: computedHeight,
           },
           '& .MuiDataGrid-columnHeaders': { overflow: 'visible !important' },
           '& .MuiDataGrid-columnHeader': { overflow: 'visible !important' },
@@ -115,6 +133,7 @@ EntityList.propTypes = {
   checkboxSelection: PropTypes.bool,
   disableSelectionOnClick: PropTypes.bool,
   height: PropTypes.string,
+  maxRows: PropTypes.number,
   children: PropTypes.node,
 };
 
@@ -125,6 +144,7 @@ EntityList.defaultProps = {
   checkboxSelection: false,
   disableSelectionOnClick: false,
   height: '60em',
+  maxRows: null,
   children: null,
 };
 
