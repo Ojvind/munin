@@ -16,7 +16,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '8px' }}>
+    <div style={{ display: 'flex', gap: '8px', paddingRight: '40px' }}>
       {LANGUAGES.map(({ code, label }) => (
         <button
           key={code}
@@ -26,7 +26,7 @@ const LanguageSwitcher = () => {
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            fontSize: '1.2rem',
+            fontSize: '2rem',
             opacity: i18n.language === code ? 1 : 0.4,
           }}
         >
