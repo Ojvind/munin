@@ -2,5 +2,9 @@
   &__datagrid {
     width: 100%;
     /* Height is controlled via EntityList height prop */
-  }  
+
+    .MuiDataGrid-cell[data-field="portraitimageurl"] {
+      padding: 0;
+    }
+  }
 }
