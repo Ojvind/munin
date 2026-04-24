@@ -39,7 +39,7 @@ const ConfirmDialog = (props) => {
             onConfirm();
           }}
         >
-          Yes
+          Sì
         </Button>
       </DialogActions>
     </Dialog>

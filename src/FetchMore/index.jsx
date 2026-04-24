@@ -16,7 +16,7 @@ const FetchMore = ({
         className="FetchMore-button"
         onClick={() => fetchMore({ variables, updateQuery })}
       >
-        More
+        Altro
         {' '}
         {children}
       </Button>

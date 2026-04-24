@@ -19,7 +19,7 @@ const SignIn = () => {
       navigate(WRITERS);
     },
     onError: () => {
-      setError('Fel användarnamn eller lösenord.');
+      setError('Nome utente o password errati.');
     },
   });
 
@@ -30,11 +30,11 @@ const SignIn = () => {
 
   return (
     <div style={{ maxWidth: 360, margin: '80px auto' }}>
-      <h2>Logga in</h2>
+      <h2>Accedi</h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <div style={{ marginBottom: 12 }}>
           <label htmlFor="login">
-            Användarnamn
+            Nome utente
             <br />
             <input
               id="login"
@@ -47,7 +47,7 @@ const SignIn = () => {
         </div>
         <div style={{ marginBottom: 12 }}>
           <label htmlFor="password">
-            Lösenord
+            Password
             <br />
             <input
               id="password"
@@ -61,7 +61,7 @@ const SignIn = () => {
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="button" onClick={handleSubmit} disabled={loading} style={{ padding: '8px 24px' }}>
-          {loading ? 'Loggar in...' : 'Logga in'}
+          {loading ? 'Accesso in corso...' : 'Accedi'}
         </button>
       </form>
     </div>

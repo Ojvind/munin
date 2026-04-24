@@ -27,13 +27,13 @@ const DeleteWriterMutation = ({ writerId }) => {
         <DeleteIcon />
       </IconButton>
       <ConfirmDialog
-        title="Delete Post?"
+        title="Eliminare autore?"
         open={open}
         setOpen={setConfirmOpen}
         onConfirm={deleteWriter}
       >
-        Are you sure you want to delete this writer?
-        (it will also delete all his/her books...)
+        Sei sicuro di voler eliminare questo autore?
+        (verranno eliminati anche tutti i suoi libri...)
       </ConfirmDialog>
     </div>
   );

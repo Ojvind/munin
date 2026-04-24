@@ -16,7 +16,7 @@ const WriterList = ({ writers, loading, fetchMore }) => (
     rowsPerPageOptions={[50, 100]}
     disableSelectionOnClick
   >
-    Writer
+    Autori
   </EntityList>
 );
 

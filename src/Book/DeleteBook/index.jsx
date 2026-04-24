@@ -28,12 +28,12 @@ const DeleteBookMutation = ({ bookId, writerId }) => {
         <DeleteIcon />
       </IconButton>
       <ConfirmDialog
-        title="Delete book?"
+        title="Eliminare il libro?"
         open={open}
         setOpen={setConfirmOpen}
         onConfirm={deleteBook}
       >
-        Are you sure you want to delete this book?
+        Sei sicuro di voler eliminare questo libro?
       </ConfirmDialog>
     </div>
   );

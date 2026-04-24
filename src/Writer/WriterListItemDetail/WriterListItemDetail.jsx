@@ -102,10 +102,10 @@ function WriterListItemDetail(props) {
                   />
                 </form>
                 <br />
-                <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
-                <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
+                <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Nome" value={name} />
+                <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Cognome" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
-                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
+                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" value={nationality} />
                 <div className="list-item-detail__row list-item-detail__row__button">
                   <SaveButton
                     onClick={async () => {

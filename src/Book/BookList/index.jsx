@@ -17,7 +17,7 @@ const BookList = ({
     pageSize={100}
     height={compact ? '45em' : '60em'}
   >
-    Books
+    Libri
   </EntityList>
 );
 
