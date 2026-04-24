@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 
 import BookList from '../BookList';
 
@@ -9,6 +10,7 @@ import Loading from '../../Shared/components/Loading';
 import ErrorMessage from '../../Error';
 
 const AllBooksContainer = () => {
+  const { t } = useTranslation();
   const {
     data, loading, error, fetchMore,
   } = useQuery(GET_ALL_BOOKS, {
@@ -59,7 +61,7 @@ const AllBooksContainer = () => {
   }
   return (
     <div className="app-content_small-header">
-      <h1>Libri</h1>
+      <h1>{t('nav.books')}</h1>
       <BookList
         books={data.allBooks}
         loading={loading}

@@ -16,6 +16,7 @@ import ThemeProvider from './Shared/ThemeProvider';
 import { AuthProvider } from './Session/AuthContext';
 
 import './style.scss';
+import './i18n';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 

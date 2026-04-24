@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "writers": "Författare",
+    "books": "Böcker"
+  },
+  "writer": {
+    "createNew": "Skapa ny författare",
+    "edit": "Redigera författare",
+    "readMore": "Läs mer om författaren",
+    "here": "här",
+    "fields": {
+      "name": "Namn",
+      "surname": "Efternamn",
+      "homepage": "Hemsida",
+      "nationality": "Nationalitet"
+    },
+    "delete": {
+      "title": "Ta bort författare?",
+      "confirm": "Är du säker på att du vill ta bort den här författaren? (alla böcker tas också bort...)"
+    },
+    "list": {
+      "id": "ID",
+      "fullName": "Namn",
+      "www": "WWW",
+      "portrait": "Porträtt",
+      "nationality": "Nationalitet"
+    }
+  },
+  "book": {
+    "createNew": "Skapa ny bok",
+    "edit": "Redigera bok",
+    "fields": {
+      "title": "Titel",
+      "url": "URL",
+      "description": "Beskrivning",
+      "yearPublished": "Publiceringsår",
+      "yearRead": "Läste boken år"
+    },
+    "delete": {
+      "title": "Ta bort bok?",
+      "confirm": "Är du säker på att du vill ta bort den här boken?"
+    },
+    "list": {
+      "cover": "Bokomslag"
+    }
+  },
+  "common": {
+    "save": "Spara",
+    "yes": "Ja",
+    "no": "Nej",
+    "more": "Mer",
+    "setImage": "Välj bild"
+  },
+  "auth": {
+    "title": "Logga in",
+    "username": "Användarnamn",
+    "password": "Lösenord",
+    "submit": "Logga in",
+    "loading": "Loggar in...",
+    "error": "Fel användarnamn eller lösenord."
+  },
+  "footer": {
+    "builtBy": "Byggd av",
+    "with": "med Blod, svett och tårar"
+  }
+}

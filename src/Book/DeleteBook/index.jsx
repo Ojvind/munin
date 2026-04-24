@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,6 +12,7 @@ import ErrorMessage from '../../Error';
 import ConfirmDialog from '../../Shared/components/ConfirmDialog';
 
 const DeleteBookMutation = ({ bookId, writerId }) => {
+  const { t } = useTranslation();
   const [open, setConfirmOpen] = useState(false);
   const [deleteBook, { error }] = useMutation(DELETE_BOOK, {
     variables: { bookId },
@@ -28,12 +30,12 @@ const DeleteBookMutation = ({ bookId, writerId }) => {
         <DeleteIcon />
       </IconButton>
       <ConfirmDialog
-        title="Eliminare il libro?"
+        title={t('book.delete.title')}
         open={open}
         setOpen={setConfirmOpen}
         onConfirm={deleteBook}
       >
-        Sei sicuro di voler eliminare questo libro?
+        {t('book.delete.confirm')}
       </ConfirmDialog>
     </div>
   );

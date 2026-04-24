@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
 
 import DialogActions from '@mui/material/DialogActions';
@@ -9,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import PropTypes from 'prop-types';
 
 const ConfirmDialog = (props) => {
+  const { t } = useTranslation();
   const {
     title,
     children,
@@ -30,7 +32,7 @@ const ConfirmDialog = (props) => {
           variant="contained"
           onClick={() => setOpen(false)}
         >
-          No
+          {t('common.no')}
         </Button>
         <Button
           variant="contained"
@@ -39,7 +41,7 @@ const ConfirmDialog = (props) => {
             onConfirm();
           }}
         >
-          Sì
+          {t('common.yes')}
         </Button>
       </DialogActions>
     </Dialog>

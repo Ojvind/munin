@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "writers": "Writers",
+    "books": "Books"
+  },
+  "writer": {
+    "createNew": "Create new writer",
+    "edit": "Edit writer",
+    "readMore": "Read more about the author",
+    "here": "here",
+    "fields": {
+      "name": "Name",
+      "surname": "Surname",
+      "homepage": "Homepage",
+      "nationality": "Nationality"
+    },
+    "delete": {
+      "title": "Delete writer?",
+      "confirm": "Are you sure you want to delete this writer? (it will also delete all his/her books...)"
+    },
+    "list": {
+      "id": "ID",
+      "fullName": "Full name",
+      "www": "WWW",
+      "portrait": "Portrait",
+      "nationality": "Nationality"
+    }
+  },
+  "book": {
+    "createNew": "Create new book",
+    "edit": "Edit book",
+    "fields": {
+      "title": "Title",
+      "url": "URL",
+      "description": "Description",
+      "yearPublished": "Year published",
+      "yearRead": "Year read"
+    },
+    "delete": {
+      "title": "Delete book?",
+      "confirm": "Are you sure you want to delete this book?"
+    },
+    "list": {
+      "cover": "Book cover"
+    }
+  },
+  "common": {
+    "save": "Save",
+    "yes": "Yes",
+    "no": "No",
+    "more": "More",
+    "setImage": "Set image"
+  },
+  "auth": {
+    "title": "Sign in",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign in",
+    "loading": "Signing in...",
+    "error": "Wrong username or password."
+  },
+  "footer": {
+    "builtBy": "Built by",
+    "with": "with Blood, sweat and tears"
+  }
+}

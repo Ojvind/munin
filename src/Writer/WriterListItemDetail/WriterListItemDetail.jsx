@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
 import Label from '../../Shared/components/Label';
 import Link from '../../Shared/components/Link';
@@ -17,6 +18,7 @@ function WriterListItemDetail(props) {
   const { writer } = props;
 
   const [edit, toggleEdit] = useState(false);
+  const { t } = useTranslation();
   const [name, onNameChange] = useState(writer.name);
   const [surname, onSurnameChange] = useState(writer.surname);
   const [homepage, onHomepageChange] = useState(writer.homepage);
@@ -62,12 +64,12 @@ function WriterListItemDetail(props) {
                     >
                       {`${writer.name} ${writer.surname}`}
                     </Label>
-                    <span className="Footer-text">Leggi di più sull&apos;autore</span>
+                    <span className="Footer-text">{t('writer.readMore')}</span>
                     {' '}
                     <Link
                       href={writer.homepage}
                     >
-                      qui
+                      {t('writer.here')}
                     </Link>
                     <br />
                     <br />
@@ -91,7 +93,7 @@ function WriterListItemDetail(props) {
                   <Button
                     onClick={handleImageUpload}
                   >
-                    Imposta immagine
+                    {t('common.setImage')}
                   </Button>
                   <input
                     type="file"
@@ -102,10 +104,10 @@ function WriterListItemDetail(props) {
                   />
                 </form>
                 <br />
-                <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Nome" value={name} />
-                <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Cognome" value={surname} />
-                <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
-                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" value={nationality} />
+                <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel={t('writer.fields.name')} value={name} />
+                <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel={t('writer.fields.surname')} value={surname} />
+                <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel={t('writer.fields.homepage')} value={homepage} />
+                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel={t('writer.fields.nationality')} value={nationality} />
                 <div className="list-item-detail__row list-item-detail__row__button">
                   <SaveButton
                     onClick={async () => {
@@ -146,7 +148,7 @@ function WriterListItemDetail(props) {
                 <Button
                   onClick={() => toggleEdit(!edit)}
                 >
-                  Modificare Autore
+                  {t('writer.edit')}
                 </Button>
                 <br />
               </div>

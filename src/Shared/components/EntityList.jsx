@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DataGrid } from '@mui/x-data-grid';
+import {
+  DataGrid, itIT, svSE, enUS,
+} from '@mui/x-data-grid';
+import { useTranslation } from 'react-i18next';
 import FetchMore from '../../FetchMore';
+
+const LOCALE_MAP = { it: itIT, sv: svSE, en: enUS };
 
 const EntityList = ({
   entities,
@@ -17,6 +22,9 @@ const EntityList = ({
   height = '60em',
   children,
 }) => {
+  const { i18n } = useTranslation();
+  const locale = LOCALE_MAP[i18n.language] || itIT;
+
   const updateQuery = (previousResult, { fetchMoreResult }) => {
     if (!fetchMoreResult) {
       return previousResult;
@@ -45,6 +53,7 @@ const EntityList = ({
         rowsPerPageOptions={rowsPerPageOptions}
         checkboxSelection={checkboxSelection}
         disableSelectionOnClick={disableSelectionOnClick}
+        localeText={locale.components.MuiDataGrid.defaultProps.localeText}
         autoHeight={false}
         sx={{
           height: `${height}`,

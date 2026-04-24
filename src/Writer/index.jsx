@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import { useTranslation } from 'react-i18next';
 
 import Container from '../Shared/Container';
 import WriterList from './WriterList';
@@ -13,6 +14,7 @@ import Loading from '../Shared/components/Loading';
 import ErrorMessage from '../Error';
 
 const WriterContainer = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -31,8 +33,8 @@ const WriterContainer = () => {
   return (
     <div className="app-content_small-header">
       <div>
-        <h1>Scrittori e Scrittrici</h1>
-        <Button onClick={handleOpen}>Crea nuovo scrittore</Button>
+        <h1>{t('nav.writers')}</h1>
+        <Button onClick={handleOpen}>{t('writer.createNew')}</Button>
         <Modal
           open={open}
           onClose={handleClose}

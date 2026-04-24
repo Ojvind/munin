@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "writers": "Scrittori e Scrittrici",
+    "books": "Libri"
+  },
+  "writer": {
+    "createNew": "Crea nuovo scrittore",
+    "edit": "Modificare Autore",
+    "readMore": "Leggi di più sull'autore",
+    "here": "qui",
+    "fields": {
+      "name": "Nome",
+      "surname": "Cognome",
+      "homepage": "Homepage",
+      "nationality": "Nazionalità"
+    },
+    "delete": {
+      "title": "Eliminare autore?",
+      "confirm": "Sei sicuro di voler eliminare questo autore? (verranno eliminati anche tutti i suoi libri...)"
+    },
+    "list": {
+      "id": "ID",
+      "fullName": "Nome e cognome",
+      "www": "WWW",
+      "portrait": "Ritratto",
+      "nationality": "Nazionalità"
+    }
+  },
+  "book": {
+    "createNew": "Crea nuovo libro",
+    "edit": "Modifica Libro",
+    "fields": {
+      "title": "Titolo",
+      "url": "URL",
+      "description": "Descrizione",
+      "yearPublished": "Anno di pubblicazione",
+      "yearRead": "Ho letto il libro nel"
+    },
+    "delete": {
+      "title": "Eliminare il libro?",
+      "confirm": "Sei sicuro di voler eliminare questo libro?"
+    },
+    "list": {
+      "cover": "Copertina del libro"
+    }
+  },
+  "common": {
+    "save": "Salva",
+    "yes": "Sì",
+    "no": "No",
+    "more": "Altro",
+    "setImage": "Imposta immagine"
+  },
+  "auth": {
+    "title": "Accedi",
+    "username": "Nome utente",
+    "password": "Password",
+    "submit": "Accedi",
+    "loading": "Accesso in corso...",
+    "error": "Nome utente o password errati."
+  },
+  "footer": {
+    "builtBy": "Costruito da",
+    "with": "con Sangue, sudore e lacrime"
+  }
+}

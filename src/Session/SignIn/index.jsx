@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import SIGN_IN from '../mutations';
 import { useAuth } from '../AuthContext';
 import { WRITERS } from '../../constants/routes';
 
 const SignIn = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { setToken } = useAuth();
   const [login, setLogin] = useState('');
@@ -19,7 +21,7 @@ const SignIn = () => {
       navigate(WRITERS);
     },
     onError: () => {
-      setError('Nome utente o password errati.');
+      setError(t('auth.error'));
     },
   });
 
@@ -30,11 +32,11 @@ const SignIn = () => {
 
   return (
     <div style={{ maxWidth: 360, margin: '80px auto' }}>
-      <h2>Accedi</h2>
+      <h2>{t('auth.title')}</h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <div style={{ marginBottom: 12 }}>
           <label htmlFor="login">
-            Nome utente
+            {t('auth.username')}
             <br />
             <input
               id="login"
@@ -47,7 +49,7 @@ const SignIn = () => {
         </div>
         <div style={{ marginBottom: 12 }}>
           <label htmlFor="password">
-            Password
+            {t('auth.password')}
             <br />
             <input
               id="password"
@@ -61,7 +63,7 @@ const SignIn = () => {
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="button" onClick={handleSubmit} disabled={loading} style={{ padding: '8px 24px' }}>
-          {loading ? 'Accesso in corso...' : 'Accedi'}
+          {loading ? t('auth.loading') : t('auth.submit')}
         </button>
       </form>
     </div>

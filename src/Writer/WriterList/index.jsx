@@ -1,24 +1,29 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import EntityList from '../../Shared/components/EntityList';
-import columns from './config/columns';
+import useWriterColumns from './config/columns';
 
-const WriterList = ({ writers, loading, fetchMore }) => (
-  <EntityList
-    entities={writers}
-    loading={loading}
-    fetchMore={fetchMore}
-    columns={columns}
-    entityName="writers"
-    className="writer-list"
-    pageSize={50}
-    rowsPerPageOptions={[50, 100]}
-    disableSelectionOnClick
-  >
-    Autori
-  </EntityList>
-);
+const WriterList = ({ writers, loading, fetchMore }) => {
+  const { t } = useTranslation();
+  const columns = useWriterColumns();
+  return (
+    <EntityList
+      entities={writers}
+      loading={loading}
+      fetchMore={fetchMore}
+      columns={columns}
+      entityName="writers"
+      className="writer-list"
+      pageSize={50}
+      rowsPerPageOptions={[50, 100]}
+      disableSelectionOnClick
+    >
+      {t('nav.writers')}
+    </EntityList>
+  );
+};
 
 WriterList.propTypes = {
   writers: PropTypes.shape({

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,6 +12,7 @@ import ErrorMessage from '../../Error';
 import ConfirmDialog from '../../Shared/components/ConfirmDialog';
 
 const DeleteWriterMutation = ({ writerId }) => {
+  const { t } = useTranslation();
   const [open, setConfirmOpen] = useState(false);
   const [deleteWriter, { error }] = useMutation(DELETE_WRITER, {
     variables: { id: writerId },
@@ -27,13 +29,12 @@ const DeleteWriterMutation = ({ writerId }) => {
         <DeleteIcon />
       </IconButton>
       <ConfirmDialog
-        title="Eliminare autore?"
+        title={t('writer.delete.title')}
         open={open}
         setOpen={setConfirmOpen}
         onConfirm={deleteWriter}
       >
-        Sei sicuro di voler eliminare questo autore?
-        (verranno eliminati anche tutti i suoi libri...)
+        {t('writer.delete.confirm')}
       </ConfirmDialog>
     </div>
   );
