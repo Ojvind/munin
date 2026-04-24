@@ -13,6 +13,8 @@ const useBookColumns = () => {
       field: 'id',
       headerName: 'ID',
       width: 50,
+      sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => (
         <Tooltip title={params.row.id} placement="top" arrow>
           <Link to={`/book/${params.row.id}/${params.row.title}`}>
@@ -25,22 +27,25 @@ const useBookColumns = () => {
     { field: 'title', headerName: t('book.fields.title'), width: 300 },
     {
       field: 'url',
-      headerName: 'WWW',
+      headerName: ' ',
       width: 100,
+      sortable: false,
       renderCell: (params) => <BookUrlCell params={params} />,
     },
     { field: 'yearPublished', headerName: t('book.fields.yearPublished'), width: 100 },
     { field: 'yearRead', headerName: t('book.fields.yearRead'), width: 100 },
     {
       field: 'portraitimageurl',
-      headerName: t('book.list.cover'),
+      headerName: ' ',
       width: 100,
+      sortable: false,
       renderCell: (params) => <BookImageCell params={params} />,
     },
     {
       field: 'delete',
       headerName: ' ',
       width: 100,
+      sortable: false,
       renderCell: (params) => <BookDeleteCell params={params} />,
     },
   ];

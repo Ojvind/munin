@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import Tooltip from '@mui/material/Tooltip';
 import DeleteWriterMutation from '../../DeleteWriter';
 import WriterPortrait from '../components/WriterPortrait';
 import WriterUrl from '../components/WriterUrl';
@@ -12,31 +13,46 @@ const useWriterColumns = () => {
       field: 'id',
       headerName: 'ID',
       width: 10,
+      sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => <WriterLink params={params} />,
     },
     {
       field: 'fullName',
       headerName: t('writer.list.fullName'),
-      sortable: false,
       width: 400,
+      renderHeader: () => (
+        <Tooltip title={t('writer.list.sortByName')} placement="top">
+          <span>{t('writer.list.fullName')}</span>
+        </Tooltip>
+      ),
       valueGetter: (params) => `${params.row.name || ''} ${params.row.surname || ''}`,
     },
     {
       field: 'homepage',
-      headerName: 'WWW',
+      headerName: ' ',
       width: 100,
+      sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => <WriterUrl params={params} />,
     },
     {
       field: 'portraitimageurl',
-      headerName: t('writer.list.portrait'),
+      headerName: ' ',
       width: 100,
+      sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => <WriterPortrait params={params} />,
     },
     {
       field: 'nationality',
-      headerName: t('writer.list.nationality'),
+      headerName: ' ',
       width: 100,
+      renderHeader: () => (
+        <Tooltip title={t('writer.list.sortByNationality')} placement="top">
+          <span>🌍</span>
+        </Tooltip>
+      ),
       renderCell: (params) => (
         params.row.nationality ? (
           <img
@@ -51,6 +67,8 @@ const useWriterColumns = () => {
       field: 'delete',
       headerName: ' ',
       width: 100,
+      sortable: false,
+      disableColumnMenu: true,
       renderCell: (params) => <DeleteWriterMutation writerId={`${params.row.id}`} />,
     },
   ];

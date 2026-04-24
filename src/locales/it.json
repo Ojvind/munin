@@ -23,7 +23,9 @@
       "fullName": "Nome e cognome",
       "www": "WWW",
       "portrait": "Ritratto",
-      "nationality": "Nazionalità"
+      "nationality": "Nazionalità",
+      "sortByName": "Clicca per ordinare per nome",
+      "sortByNationality": "Clicca per ordinare per nazionalità"
     }
   },
   "book": {

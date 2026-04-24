@@ -62,6 +62,16 @@ const EntityList = ({
             height: `${height}`,
             maxHeight: `${height}`,
           },
+          '& .MuiDataGrid-columnHeaders': { overflow: 'visible !important' },
+          '& .MuiDataGrid-columnHeader': { overflow: 'visible !important' },
+          '& .MuiDataGrid-columnHeaderDraggableContainer': { overflow: 'visible !important' },
+          '& .MuiDataGrid-columnHeadersInner': { paddingRight: '24px' },
+          '& .MuiDataGrid-menuIcon': { visibility: 'visible', width: 'auto' },
+          '& .MuiDataGrid-columnHeader--sortable .MuiDataGrid-iconButtonContainer': {
+            visibility: 'visible',
+            width: 'auto',
+          },
+          '& .MuiDataGrid-sortIcon': { opacity: 1 },
         }}
       />
       <FetchMore

@@ -23,7 +23,9 @@
       "fullName": "Full name",
       "www": "WWW",
       "portrait": "Portrait",
-      "nationality": "Nationality"
+      "nationality": "Nationality",
+      "sortByName": "Click to sort by name",
+      "sortByNationality": "Click to sort by nationality"
     }
   },
   "book": {

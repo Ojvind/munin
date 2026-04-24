@@ -23,7 +23,9 @@
       "fullName": "Namn",
       "www": "WWW",
       "portrait": "Porträtt",
-      "nationality": "Nationalitet"
+      "nationality": "Nationalitet",
+      "sortByName": "Klicka för att sortera efter namn",
+      "sortByNationality": "Klicka för att sortera efter nationalitet"
     }
   },
   "book": {
