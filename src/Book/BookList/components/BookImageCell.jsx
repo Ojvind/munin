@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DefaultImage from '../../../assets/upload-photo-here.png';
+import DefaultImage from '../../../assets/default-book.svg';
 
 const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
 

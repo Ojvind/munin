@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import Input from '../../Shared/components/Input';
 import SaveButton from '../../Shared/components/SaveButton';
 import ErrorMessage from '../../Error';
-import DefaultImage from '../../assets/upload-photo-here.png';
+import DefaultImage from '../../assets/default-book.svg';
 import { UPDATE_BOOK } from '../mutations';
 import { GET_BOOK } from '../queries';
 

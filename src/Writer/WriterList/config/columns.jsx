@@ -12,7 +12,7 @@ const useWriterColumns = () => {
     {
       field: 'id',
       headerName: 'ID',
-      width: 10,
+      width: 80,
       sortable: false,
       disableColumnMenu: true,
       renderCell: (params) => <WriterLink params={params} />,
@@ -20,7 +20,8 @@ const useWriterColumns = () => {
     {
       field: 'fullName',
       headerName: t('writer.list.fullName'),
-      width: 400,
+      flex: 1,
+      minWidth: 200,
       renderHeader: () => (
         <Tooltip title={t('writer.list.sortByName')} placement="top">
           <span>{t('writer.list.fullName')}</span>
@@ -31,26 +32,29 @@ const useWriterColumns = () => {
     {
       field: 'homepage',
       headerName: ' ',
-      width: 100,
+      width: 60,
       sortable: false,
       disableColumnMenu: true,
+      align: 'center',
       renderCell: (params) => <WriterUrl params={params} />,
     },
     {
       field: 'portraitimageurl',
       headerName: ' ',
-      width: 100,
+      width: 90,
       sortable: false,
       disableColumnMenu: true,
+      align: 'center',
       renderCell: (params) => <WriterPortrait params={params} />,
     },
     {
       field: 'nationality',
       headerName: ' ',
-      width: 100,
+      width: 80,
+      align: 'center',
       renderHeader: () => (
         <Tooltip title={t('writer.list.sortByNationality')} placement="top">
-          <span>🌍</span>
+          <span>&nbsp;</span>
         </Tooltip>
       ),
       renderCell: (params) => (
@@ -66,9 +70,10 @@ const useWriterColumns = () => {
     {
       field: 'delete',
       headerName: ' ',
-      width: 100,
+      width: 80,
       sortable: false,
       disableColumnMenu: true,
+      align: 'center',
       renderCell: (params) => <DeleteWriterMutation writerId={`${params.row.id}`} />,
     },
   ];

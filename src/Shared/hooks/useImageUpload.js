@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import DefaultImage from '../../assets/upload-photo-here.png';
+import DefaultImage from '../../assets/default-writer.svg';
 
 const GENERATE_UPLOAD_URL = gql`
   mutation($filename: String!, $contentType: String!) {
@@ -10,9 +10,9 @@ const GENERATE_UPLOAD_URL = gql`
 
 const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
 
-export function useImageUpload(initialPortraitImageUrl) {
+export function useImageUpload(initialPortraitImageUrl, fallbackImage = DefaultImage) {
   const [avatarURL, setAvatarURL] = useState(
-    initialPortraitImageUrl ? `${IMAGES_URL}/${initialPortraitImageUrl}` : DefaultImage,
+    initialPortraitImageUrl ? `${IMAGES_URL}/${initialPortraitImageUrl}` : fallbackImage,
   );
   const [portraitimageurl, setPortraitImageUrl] = useState(initialPortraitImageUrl);
   const fileUploadRef = useRef();

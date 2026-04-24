@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import BookListItemDetailView from './BookListItemDetailView';
 import BookListItemDetailEdit from './BookListItemDetailEdit';
 import { useImageUpload } from '../../Shared/hooks/useImageUpload';
+import DefaultBookImage from '../../assets/default-book.svg';
 
 function BookListItemDetail(props) {
   const { book } = props;
@@ -22,7 +23,7 @@ function BookListItemDetail(props) {
     fileUploadRef,
     handleImageUpload,
     uploadImageDisplay,
-  } = useImageUpload(book.portraitimageurl);
+  } = useImageUpload(book.portraitimageurl, DefaultBookImage);
 
   return (
     <div>
