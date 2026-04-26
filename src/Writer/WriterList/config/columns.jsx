@@ -41,7 +41,7 @@ const useWriterColumns = () => {
     {
       field: 'portraitimageurl',
       headerName: ' ',
-      width: 75,
+      width: 70,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
