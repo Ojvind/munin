@@ -19,7 +19,7 @@ const ThemeShowcase = () => {
       <Typography variant="h2" gutterBottom>
         Brage App Theme Showcase
       </Typography>
-      
+
       <Typography variant="body1" paragraph>
         Detta är en showcase av det nya temasystemet som kombinerar SCSS-variabler med Material-UI.
       </Typography>
@@ -28,7 +28,7 @@ const ThemeShowcase = () => {
       <Typography variant="h3" gutterBottom sx={{ marginTop: theme.spacing(4) }}>
         Färgpalett
       </Typography>
-      
+
       <Grid container spacing={2} sx={{ marginBottom: theme.spacing(4) }}>
         <Grid item xs={12} sm={6} md={3}>
           <Card>
@@ -48,7 +48,7 @@ const ThemeShowcase = () => {
             </CardContent>
           </Card>
         </Grid>
-        
+
         <Grid item xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
@@ -67,7 +67,7 @@ const ThemeShowcase = () => {
             </CardContent>
           </Card>
         </Grid>
-        
+
         <Grid item xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
@@ -86,7 +86,7 @@ const ThemeShowcase = () => {
             </CardContent>
           </Card>
         </Grid>
-        
+
         <Grid item xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
@@ -111,7 +111,7 @@ const ThemeShowcase = () => {
       <Typography variant="h3" gutterBottom sx={{ marginTop: theme.spacing(4) }}>
         Typografi
       </Typography>
-      
+
       <Paper sx={{ padding: theme.spacing(3), marginBottom: theme.spacing(4) }}>
         <Typography variant="h1" gutterBottom>H1 - Rubrik 1</Typography>
         <Typography variant="h2" gutterBottom>H2 - Rubrik 2</Typography>
@@ -134,7 +134,7 @@ const ThemeShowcase = () => {
       <Typography variant="h3" gutterBottom sx={{ marginTop: theme.spacing(4) }}>
         Knappar
       </Typography>
-      
+
       <Box sx={{ marginBottom: theme.spacing(4) }}>
         <Button variant="contained" color="primary" sx={{ margin: theme.spacing(1) }}>
           Primär
@@ -154,7 +154,7 @@ const ThemeShowcase = () => {
       <Typography variant="h3" gutterBottom sx={{ marginTop: theme.spacing(4) }}>
         Chips
       </Typography>
-      
+
       <Box sx={{ marginBottom: theme.spacing(4) }}>
         <Chip label="Standard" color="primary" sx={{ margin: theme.spacing(0.5) }} />
         <Chip label="Sekundär" color="secondary" sx={{ margin: theme.spacing(0.5) }} />
@@ -168,10 +168,14 @@ const ThemeShowcase = () => {
       <Typography variant="h3" gutterBottom sx={{ marginTop: theme.spacing(4) }}>
         Spacing
       </Typography>
-      
+
       <Paper sx={{ padding: theme.spacing(3) }}>
         <Typography variant="body1" gutterBottom>
-          Detta papper har padding på {theme.spacing(3)} (24px).
+          Detta papper har padding på
+          {' '}
+          {theme.spacing(3)}
+          {' '}
+          (24px).
         </Typography>
         <Box
           sx={{
@@ -182,7 +186,15 @@ const ThemeShowcase = () => {
           }}
         />
         <Typography variant="body2" color="text.secondary">
-          Den blå rektangeln ovan har höjd på {theme.spacing(4)} (32px) och margin på {theme.spacing(2)} (16px).
+          Den blå rektangeln ovan har höjd på
+          {' '}
+          {theme.spacing(4)}
+          {' '}
+          (32px) och margin på
+          {' '}
+          {theme.spacing(2)}
+          {' '}
+          (16px).
         </Typography>
       </Paper>
     </Box>
@@ -190,4 +202,3 @@ const ThemeShowcase = () => {
 };
 
 export default ThemeShowcase;
-

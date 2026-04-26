@@ -1,5 +1,5 @@
 import React, {
-  createContext, useContext, useState, useEffect,
+  createContext, useContext, useState, useEffect, useMemo, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,24 +8,29 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [token, setTokenState] = useState(() => localStorage.getItem('token'));
 
-  const setToken = (newToken) => {
+  const setToken = useCallback((newToken) => {
     localStorage.setItem('token', newToken);
     setTokenState(newToken);
-  };
+  }, []);
 
-  const removeToken = () => {
+  const removeToken = useCallback(() => {
     localStorage.removeItem('token');
     setTokenState(null);
-  };
+  }, []);
 
   useEffect(() => {
     const handleAuthError = () => removeToken();
     window.addEventListener('auth-error', handleAuthError);
     return () => window.removeEventListener('auth-error', handleAuthError);
-  }, []);
+  }, [removeToken]);
+
+  const contextValue = useMemo(
+    () => ({ token, setToken, removeToken }),
+    [token, setToken, removeToken],
+  );
 
   return (
-    <AuthContext.Provider value={{ token, setToken, removeToken }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
