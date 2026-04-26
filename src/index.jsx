@@ -14,6 +14,7 @@ import { onError } from '@apollo/client/link/error';
 import App from './App';
 import ThemeProvider from './Shared/ThemeProvider';
 import { AuthProvider } from './Session/AuthContext';
+import { ThemeContextProvider } from './contexts/ThemeContext';
 
 import './style.scss';
 import './i18n';
@@ -53,9 +54,11 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}>
     <AuthProvider>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <ThemeContextProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </ThemeContextProvider>
     </AuthProvider>
   </ApolloProvider>,
 );
