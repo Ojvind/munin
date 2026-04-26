@@ -2,12 +2,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import EntityList from '../../Shared/components/EntityList';
+import WriterMobileCard from './components/WriterMobileCard';
 import useWriterColumns from './config/columns';
 
 const WriterList = ({ writers, loading, fetchMore }) => {
   const { t } = useTranslation();
   const columns = useWriterColumns();
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  if (isMobile) {
+    return (
+      <div className="mobile-card-list">
+        {writers.edges.map((writer) => (
+          <WriterMobileCard key={writer.id} writer={writer} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <EntityList
       entities={writers}

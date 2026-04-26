@@ -2,7 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import EntityList from '../../Shared/components/EntityList';
+import BookMobileCard from './components/BookMobileCard';
 import useBookColumns from './config/columns';
 
 const BookList = ({
@@ -10,6 +12,18 @@ const BookList = ({
 }) => {
   const { t } = useTranslation();
   const columns = useBookColumns();
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  if (isMobile) {
+    return (
+      <div className="mobile-card-list">
+        {books.edges.map((book) => (
+          <BookMobileCard key={book.id} book={book} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <EntityList
       entities={books}

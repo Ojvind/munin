@@ -1,0 +1,59 @@
+.mobile-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-card-border);
+  background: var(--color-card-bg);
+  box-shadow: var(--color-card-shadow);
+
+  &__portrait,
+  &__cover {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  &__cover {
+    object-position: center;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-link);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+}
