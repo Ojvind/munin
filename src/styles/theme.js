@@ -7,10 +7,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#58b0c3', // $primary
-      dark: '#4a9ba8', // $primary-dark
-      light: '#6bb8c8', // $primary-light
-      lighter: '#7ec0d3', // $primary-lighter
+      main: '#c9a478', // $primary – light warm beige/tan
+      dark: '#b08a5a', // $primary-dark
+      light: '#d8ba96', // $primary-light
+      lighter: '#e5ccb0', // $primary-lighter
       contrastText: '#ffffff',
     },
     secondary: {
@@ -200,15 +200,15 @@ const theme = createTheme({
         root: {
           border: 'none',
           '& .MuiDataGrid-row:nth-of-type(even)': {
-            backgroundColor: '#f9fafb', // $gray-100 - varannan rad
+            backgroundColor: 'rgba(201,164,120,0.05)',
             '&:hover': {
-              backgroundColor: '#f3f4f6', // Ljusare grå vid hover
+              backgroundColor: 'rgba(201,164,120,0.12)',
             },
           },
           '& .MuiDataGrid-row:nth-of-type(odd)': {
             backgroundColor: 'transparent',
             '&:hover': {
-              backgroundColor: '#f3f4f6', // Samma hover-färg för båda
+              backgroundColor: 'rgba(201,164,120,0.08)',
             },
           },
           '& .MuiDataGrid-cell': {

@@ -8,15 +8,14 @@
 }
 
 .list-item-detail {
-  border-color: $default-border-color;
-  border-width: $default-border-width;
-  border-radius: $default-border-radius;
-  border-style: solid;
   padding: 20px 20px;
   display: flex;
-  border: silver dashed 2px;
+  border: 1px solid $border-light;
+  border-radius: 12px;
   margin: 0em 0em 0em 0em;
   width: 100%;
+  background: linear-gradient(135deg, lighten($primary, 30%) 0%, $white 55%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   
   &__row {
     display: flex;

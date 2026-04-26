@@ -7,7 +7,7 @@ $black: #000000;
 $white: #ffffff;
 
 // Primary brand colors
-$primary: #58b0c3; // Main blue
+$primary: #c9a478; // Light warm beige/tan
 $primary-dark: darken($primary, 15%);
 $primary-light: lighten($primary, 15%);
 $primary-lighter: lighten($primary, 25%);
@@ -54,7 +54,7 @@ $border-medium: $gray-400;
 $border-dark: $gray-500;
 
 // Interactive colors
-$link-color: $primary-dark;
+$link-color: #b08a5a;
 $link-hover: $primary;
 $link-active: $primary-light;
 
