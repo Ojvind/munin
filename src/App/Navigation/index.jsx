@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useApolloClient } from '@apollo/client';
 import LanguageSwitcher from '../../Shared/components/LanguageSwitcher';
 import { useThemeContext } from '../../contexts/ThemeContext';
+import { useAuth } from '../../Session/AuthContext';
 
 const THEME_BUTTONS = [
   { name: 'earth', color: '#c9a478' },
@@ -12,6 +14,13 @@ const THEME_BUTTONS = [
 const Navigation = () => {
   const { t } = useTranslation();
   const { themeName, selectTheme } = useThemeContext();
+  const { token, removeToken } = useAuth();
+  const client = useApolloClient();
+
+  const handleSignOut = () => {
+    removeToken();
+    client.clearStore();
+  };
 
   return (
     <header className="Navigation">
@@ -19,6 +28,18 @@ const Navigation = () => {
         <Link to="/writers">{t('nav.writers')}</Link>
         |
         <Link to="/libri">{t('nav.books')}</Link>
+        {token && (
+          <>
+            |
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="Navigation-signout"
+            >
+              {t('nav.signOut')}
+            </button>
+          </>
+        )}
       </div>
       <LanguageSwitcher />
       <div style={{

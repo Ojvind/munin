@@ -1,7 +1,8 @@
 {
   "nav": {
     "writers": "Författare",
-    "books": "Böcker"
+    "books": "Böcker",
+    "signOut": "Logga ut"
   },
   "writer": {
     "createNew": "Skapa ny författare",

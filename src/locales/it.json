@@ -1,7 +1,8 @@
 {
   "nav": {
     "writers": "Scrittori e Scrittrici",
-    "books": "Libri"
+    "books": "Libri",
+    "signOut": "Disconnetti"
   },
   "writer": {
     "createNew": "Crea nuovo scrittore",

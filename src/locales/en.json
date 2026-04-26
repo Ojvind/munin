@@ -1,7 +1,8 @@
 {
   "nav": {
     "writers": "Writers",
-    "books": "Books"
+    "books": "Books",
+    "signOut": "Sign out"
   },
   "writer": {
     "createNew": "Create new writer",
