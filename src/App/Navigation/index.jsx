@@ -2,14 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
+import Tooltip from '@mui/material/Tooltip';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
+import WavesOutlinedIcon from '@mui/icons-material/WavesOutlined';
 import LanguageSwitcher from '../../Shared/components/LanguageSwitcher';
 import { useThemeContext } from '../../contexts/ThemeContext';
 import { useAuth } from '../../Session/AuthContext';
 
 const THEME_BUTTONS = [
-  { name: 'earth', color: '#c9a478' },
-  { name: 'ocean', color: '#2e6e8e' },
-  { name: 'dark', color: '#9589d6', background: 'linear-gradient(135deg, #9589d6 30%, #12131f 100%)' },
+  { name: 'earth', color: '#c9a478', Icon: LandscapeOutlinedIcon },
+  { name: 'ocean', color: '#2e6e8e', Icon: WavesOutlinedIcon },
+  { name: 'dark', color: '#9589d6', Icon: DarkModeOutlinedIcon },
 ];
 
 const Navigation = () => {
@@ -38,25 +42,25 @@ const Navigation = () => {
         paddingRight: '40px',
       }}
       >
-        {THEME_BUTTONS.map(({ name, color, background }) => (
-          <button
-            key={name}
-            type="button"
-            aria-label={t(`theme.${name}`)}
-            title={t(`theme.${name}`)}
-            onClick={() => selectTheme(name)}
-            style={{
-              width: '20px',
-              height: '20px',
-              borderRadius: '50%',
-              background: background || color,
-              border: themeName === name ? '2px solid #ffffff' : '2px solid transparent',
-              outline: themeName === name ? `2px solid ${color}` : 'none',
-              cursor: 'pointer',
-              padding: 0,
-              flexShrink: 0,
-            }}
-          />
+        {THEME_BUTTONS.map(({ name, color, Icon }) => (
+          <Tooltip key={name} title={t(`theme.${name}`)} enterDelay={0} enterNextDelay={0}>
+            <button
+              type="button"
+              aria-label={t(`theme.${name}`)}
+              onClick={() => selectTheme(name)}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                color: themeName === name ? color : 'rgba(255,255,255,0.5)',
+              }}
+            >
+              <Icon style={{ fontSize: '20px' }} />
+            </button>
+          </Tooltip>
         ))}
         {token && (
           <button
