@@ -35,6 +35,7 @@ const BookList = ({
       pageSize={100}
       maxRows={compact ? 8 : null}
       rowHeight={72}
+      initialState={{ sorting: { sortModel: [{ field: 'title', sort: 'asc' }] } }}
     >
       {t('nav.books')}
     </EntityList>

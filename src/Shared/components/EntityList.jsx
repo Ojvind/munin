@@ -26,6 +26,7 @@ const EntityList = ({
   height = '60em',
   maxRows = null,
   rowHeight = DEFAULT_ROW_HEIGHT,
+  initialState = {},
   children,
 }) => {
   const { i18n } = useTranslation();
@@ -74,6 +75,7 @@ const EntityList = ({
         checkboxSelection={checkboxSelection}
         disableSelectionOnClick={disableSelectionOnClick}
         localeText={locale.components.MuiDataGrid.defaultProps.localeText}
+        initialState={initialState}
         autoHeight={false}
         sx={{
           height: computedHeight,
@@ -137,6 +139,7 @@ EntityList.propTypes = {
   height: PropTypes.string,
   maxRows: PropTypes.number,
   rowHeight: PropTypes.number,
+  initialState: PropTypes.shape({}),
   children: PropTypes.node,
 };
 
@@ -149,6 +152,7 @@ EntityList.defaultProps = {
   height: '60em',
   maxRows: null,
   rowHeight: DEFAULT_ROW_HEIGHT,
+  initialState: {},
   children: null,
 };
 
