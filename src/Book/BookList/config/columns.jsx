@@ -39,8 +39,8 @@ const useBookColumns = () => {
       align: 'center',
       renderCell: (params) => <BookUrlCell params={params} />,
     },
-    { field: 'yearPublished', headerName: t('book.fields.yearPublished'), width: 120 },
-    { field: 'yearRead', headerName: t('book.fields.yearRead'), width: 120 },
+    { field: 'yearPublished', headerName: t('book.fields.yearPublished'), width: 80 },
+    { field: 'yearRead', headerName: t('book.fields.yearRead'), width: 80 },
     {
       field: 'portraitimageurl',
       headerName: ' ',

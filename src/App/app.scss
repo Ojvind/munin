@@ -14,6 +14,13 @@
     padding: 40px;
   }
 
+  @media (max-width: 900px) {
+    &-content_large-header,
+    &-content_small-header {
+      padding: 20px;
+    }
+  }
+
   @media (max-width: 600px) {
     &-content_large-header,
     &-content_small-header {

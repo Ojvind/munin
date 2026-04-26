@@ -62,7 +62,7 @@ const EntityList = ({
   };
 
   return (
-    <div className={className}>
+    <div className={className} style={{ minWidth: 0, overflow: 'hidden' }}>
       <DataGrid
         className={`${className}__datagrid`}
         onStateChange={handleStateChange}
