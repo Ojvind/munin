@@ -64,7 +64,8 @@
   },
   "theme": {
     "earth": "Terra",
-    "ocean": "Mare"
+    "ocean": "Mare",
+    "dark": "Scuro"
   },
   "footer": {
     "builtBy": "Costruito da",

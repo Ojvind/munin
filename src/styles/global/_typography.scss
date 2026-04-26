@@ -19,6 +19,12 @@ a {
     &:hover { color: #4185a8; opacity: 0.8; }
     &:active { color: #5a9dbd; }
   }
+
+  [data-theme="dark"] & {
+    color: #9589d6;
+    &:hover { color: #a99ee0; opacity: 0.9; }
+    &:active { color: #7c6fcd; }
+  }
 }
 
 body {

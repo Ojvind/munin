@@ -9,6 +9,7 @@ import { useAuth } from '../../Session/AuthContext';
 const THEME_BUTTONS = [
   { name: 'earth', color: '#c9a478' },
   { name: 'ocean', color: '#2e6e8e' },
+  { name: 'dark', color: '#9589d6', background: 'linear-gradient(135deg, #9589d6 30%, #12131f 100%)' },
 ];
 
 const Navigation = () => {
@@ -28,18 +29,6 @@ const Navigation = () => {
         <Link to="/writers">{t('nav.writers')}</Link>
         |
         <Link to="/libri">{t('nav.books')}</Link>
-        {token && (
-          <>
-            |
-            <button
-              type="button"
-              onClick={handleSignOut}
-              className="Navigation-signout"
-            >
-              {t('nav.signOut')}
-            </button>
-          </>
-        )}
       </div>
       <LanguageSwitcher />
       <div style={{
@@ -49,7 +38,7 @@ const Navigation = () => {
         paddingRight: '40px',
       }}
       >
-        {THEME_BUTTONS.map(({ name, color }) => (
+        {THEME_BUTTONS.map(({ name, color, background }) => (
           <button
             key={name}
             type="button"
@@ -60,7 +49,7 @@ const Navigation = () => {
               width: '20px',
               height: '20px',
               borderRadius: '50%',
-              backgroundColor: color,
+              background: background || color,
               border: themeName === name ? '2px solid #ffffff' : '2px solid transparent',
               outline: themeName === name ? `2px solid ${color}` : 'none',
               cursor: 'pointer',
@@ -69,6 +58,15 @@ const Navigation = () => {
             }}
           />
         ))}
+        {token && (
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="Navigation-signout"
+          >
+            {t('nav.signOut')}
+          </button>
+        )}
       </div>
     </header>
   );

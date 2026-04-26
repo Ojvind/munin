@@ -223,16 +223,16 @@ export const earthTheme = createTheme({
             borderBottom: '1px solid #edf0f2', // $border-light
           },
           '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: '#f5f7f8', // $gray-200
-            borderBottom: '2px solid #cacbd3', // $border-medium
+            backgroundColor: 'rgba(201,164,120,0.14)',
+            borderBottom: '2px solid rgba(201,164,120,0.35)',
           },
           '& .MuiDataGrid-columnHeader': {
             fontWeight: 600,
-            color: '#313246', // $text-primary
+            color: '#313246',
           },
           '& .MuiDataGrid-footerContainer': {
-            borderTop: '1px solid #edf0f2', // $border-light
-            backgroundColor: '#f5f7f8', // $gray-200
+            borderTop: '1px solid rgba(201,164,120,0.25)',
+            backgroundColor: 'rgba(201,164,120,0.08)',
           },
         },
       },
@@ -274,16 +274,97 @@ export const oceanTheme = createTheme({
             borderBottom: '1px solid #edf0f2',
           },
           '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: '#f5f7f8',
-            borderBottom: '2px solid #cacbd3',
+            backgroundColor: 'rgba(46,110,142,0.12)',
+            borderBottom: '2px solid rgba(46,110,142,0.3)',
           },
           '& .MuiDataGrid-columnHeader': {
             fontWeight: 600,
             color: '#313246',
           },
           '& .MuiDataGrid-footerContainer': {
-            borderTop: '1px solid #edf0f2',
-            backgroundColor: '#f5f7f8',
+            borderTop: '1px solid rgba(46,110,142,0.2)',
+            backgroundColor: 'rgba(46,110,142,0.07)',
+          },
+        },
+      },
+    },
+  },
+});
+
+const darkTypography = Object.fromEntries(
+  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1'].map((k) => [k, { ...sharedConfig.typography[k], color: '#e2e8f0' }]),
+);
+
+export const darkTheme = createTheme({
+  ...sharedConfig,
+  typography: {
+    ...sharedConfig.typography,
+    ...darkTypography,
+    body2: { ...sharedConfig.typography.body2, color: '#94a3b8' },
+  },
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#7c6fcd',
+      dark: '#6357b8',
+      light: '#9589d6',
+      contrastText: '#ffffff',
+    },
+    secondary: sharedPalette.secondary,
+    error: sharedPalette.error,
+    warning: sharedPalette.warning,
+    info: sharedPalette.info,
+    success: sharedPalette.success,
+    text: {
+      primary: '#e2e8f0',
+      secondary: '#94a3b8',
+      disabled: '#475569',
+    },
+    background: {
+      default: '#0f1117',
+      paper: '#1a1b2e',
+    },
+    divider: '#2d3748',
+  },
+  components: {
+    ...sharedComponentOverrides,
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#2d2f45',
+          color: '#e2e8f0',
+          maxWidth: 250,
+          border: '1px solid #3d3f5a',
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+          '& .MuiDataGrid-row:nth-of-type(even)': {
+            backgroundColor: 'rgba(124,111,205,0.08)',
+            '&:hover': { backgroundColor: 'rgba(124,111,205,0.18)' },
+          },
+          '& .MuiDataGrid-row:nth-of-type(odd)': {
+            backgroundColor: 'transparent',
+            '&:hover': { backgroundColor: 'rgba(124,111,205,0.12)' },
+          },
+          '& .MuiDataGrid-cell': {
+            borderBottom: '1px solid #2d3748',
+          },
+          '& .MuiDataGrid-columnHeaders': {
+            backgroundColor: 'rgba(124,111,205,0.18)',
+            borderBottom: '2px solid rgba(124,111,205,0.4)',
+          },
+          '& .MuiDataGrid-columnHeader': {
+            fontWeight: 600,
+            color: '#e2e8f0',
+          },
+          '& .MuiDataGrid-footerContainer': {
+            borderTop: '1px solid rgba(124,111,205,0.25)',
+            backgroundColor: 'rgba(124,111,205,0.1)',
           },
         },
       },
@@ -294,6 +375,7 @@ export const oceanTheme = createTheme({
 export const themes = {
   earth: earthTheme,
   ocean: oceanTheme,
+  dark: darkTheme,
 };
 
 export default earthTheme;

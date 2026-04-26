@@ -64,7 +64,8 @@
   },
   "theme": {
     "earth": "Earth",
-    "ocean": "Ocean"
+    "ocean": "Ocean",
+    "dark": "Dark"
   },
   "footer": {
     "builtBy": "Built by",

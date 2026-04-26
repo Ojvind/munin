@@ -64,7 +64,8 @@
   },
   "theme": {
     "earth": "Jord",
-    "ocean": "Hav"
+    "ocean": "Hav",
+    "dark": "Mörkt"
   },
   "footer": {
     "builtBy": "Byggd av",

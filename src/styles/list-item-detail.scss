@@ -23,6 +23,12 @@
   [data-theme="ocean"] & {
     background: linear-gradient(135deg, #8ab5c8 0%, #ffffff 55%);
   }
+
+  [data-theme="dark"] & {
+    background: linear-gradient(135deg, #2a2b3d 0%, #1a1b2e 55%);
+    border-color: #2d3748;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  }
   
   &__row {
     display: flex;
