@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
 import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
@@ -65,45 +64,26 @@ function WriterListItemDetail(props) {
                 </IconButton>
                 <div className="list-item-detail__row">
                   <div className="list-item-detail__row__column">
-                    <Tooltip
-                      title={(
-                        <img
-                          src={avatarURL}
-                          alt="Avatar"
-                          style={{
-                            width: '400px',
-                            height: 'auto',
-                            maxHeight: '600px',
-                            objectFit: 'contain',
-                            display: 'block',
-                          }}
-                        />
-                      )}
-                      placement="right"
-                      arrow
+                    <div style={{
+                      width: '200px',
+                      height: '200px',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                    }}
                     >
-                      <div style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '6px',
-                        overflow: 'hidden',
-                        flexShrink: 0,
-                        cursor: 'pointer',
-                      }}
-                      >
-                        <img
-                          src={avatarURL}
-                          alt="Avatar"
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'center top',
-                            display: 'block',
-                          }}
-                        />
-                      </div>
-                    </Tooltip>
+                      <img
+                        src={avatarURL}
+                        alt="Avatar"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: 'center top',
+                          display: 'block',
+                        }}
+                      />
+                    </div>
                   </div>
                   <div className="list-item-detail__row__column">
                     <Label
