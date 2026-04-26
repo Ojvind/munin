@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #24292e;
   padding: 20px;
   color: #ffffff;
   position: fixed;
   bottom: 0;
-  width: 100%;  
+  width: 100%;
+
+  [data-theme="earth"] & { background-color: #4a3020; }
+  [data-theme="ocean"] & { background-color: #1e2d38; }
 }
 
 @media only screen and (max-device-width: 480px) {

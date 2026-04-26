@@ -4,11 +4,13 @@
   top: 0;
   width: 100%;
   z-index: 1;
-  background-color: #24292e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
+
+  [data-theme="earth"] & { background-color: #4a3020; }
+  [data-theme="ocean"] & { background-color: #1e2d38; }
 }
 @media only screen and (max-device-width: 480px) {
   .Navigation {
