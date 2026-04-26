@@ -5,16 +5,8 @@ import LanguageSwitcher from '../../Shared/components/LanguageSwitcher';
 import { useThemeContext } from '../../contexts/ThemeContext';
 
 const THEME_BUTTONS = [
-  {
-    name: 'earth',
-    color: '#c9a478',
-    title: 'Earth / Jord',
-  },
-  {
-    name: 'ocean',
-    color: '#4a96b0',
-    title: 'Ocean / Hav / Mare',
-  },
+  { name: 'earth', color: '#c9a478' },
+  { name: 'ocean', color: '#2e6e8e' },
 ];
 
 const Navigation = () => {
@@ -29,13 +21,19 @@ const Navigation = () => {
         <Link to="/libri">{t('nav.books')}</Link>
       </div>
       <LanguageSwitcher />
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        {THEME_BUTTONS.map(({ name, color, title }) => (
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        alignItems: 'center',
+        paddingRight: '40px',
+      }}
+      >
+        {THEME_BUTTONS.map(({ name, color }) => (
           <button
             key={name}
             type="button"
-            aria-label={title}
-            title={title}
+            aria-label={t(`theme.${name}`)}
+            title={t(`theme.${name}`)}
             onClick={() => selectTheme(name)}
             style={{
               width: '20px',

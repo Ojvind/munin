@@ -245,10 +245,10 @@ export const oceanTheme = createTheme({
   palette: {
     ...sharedPalette,
     primary: {
-      main: '#4a96b0',
-      dark: '#3a7d94',
-      light: '#5eabc4',
-      lighter: '#7abdd3',
+      main: '#2e6e8e',
+      dark: '#1f5470',
+      light: '#4185a8',
+      lighter: '#5a9dbd',
       contrastText: '#ffffff',
     },
   },
@@ -259,15 +259,15 @@ export const oceanTheme = createTheme({
         root: {
           border: 'none',
           '& .MuiDataGrid-row:nth-of-type(even)': {
-            backgroundColor: 'rgba(74,150,176,0.05)',
+            backgroundColor: 'rgba(46,110,142,0.05)',
             '&:hover': {
-              backgroundColor: 'rgba(74,150,176,0.12)',
+              backgroundColor: 'rgba(46,110,142,0.12)',
             },
           },
           '& .MuiDataGrid-row:nth-of-type(odd)': {
             backgroundColor: 'transparent',
             '&:hover': {
-              backgroundColor: 'rgba(74,150,176,0.08)',
+              backgroundColor: 'rgba(46,110,142,0.08)',
             },
           },
           '& .MuiDataGrid-cell': {

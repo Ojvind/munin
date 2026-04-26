@@ -61,6 +61,10 @@
     "loading": "Signing in...",
     "error": "Wrong username or password."
   },
+  "theme": {
+    "earth": "Earth",
+    "ocean": "Ocean"
+  },
   "footer": {
     "builtBy": "Built by",
     "with": "with Blood, sweat and tears"

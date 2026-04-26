@@ -93,8 +93,8 @@ const EntityList = ({
           },
           '& .MuiDataGrid-sortIcon': { opacity: 1 },
           '& .MuiDataGrid-iconSeparator': { display: 'none' },
-          '& .MuiDataGrid-columnHeader:nth-of-type(even)': { backgroundColor: 'rgba(201,164,120,0.07)' },
-          '& .MuiDataGrid-row .MuiDataGrid-cell:nth-of-type(even)': { backgroundColor: 'rgba(201,164,120,0.07)' },
+          '& .MuiDataGrid-columnHeader:nth-of-type(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
+          '& .MuiDataGrid-row .MuiDataGrid-cell:nth-of-type(even)': { backgroundColor: 'rgba(0,0,0,0.03)' },
         }}
       />
       <FetchMore

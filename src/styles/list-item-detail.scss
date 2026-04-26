@@ -14,14 +14,15 @@
   border-radius: 12px;
   margin: 0em 0em 0em 0em;
   width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
   [data-theme="earth"] & {
     background: linear-gradient(135deg, #f0e4d0 0%, #ffffff 55%);
   }
 
   [data-theme="ocean"] & {
-    background: linear-gradient(135deg, #c5e0ea 0%, #ffffff 55%);
+    background: linear-gradient(135deg, #8ab5c8 0%, #ffffff 55%);
   }
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   
   &__row {
     display: flex;

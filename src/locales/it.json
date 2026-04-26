@@ -61,6 +61,10 @@
     "loading": "Accesso in corso...",
     "error": "Nome utente o password errati."
   },
+  "theme": {
+    "earth": "Terra",
+    "ocean": "Mare"
+  },
   "footer": {
     "builtBy": "Costruito da",
     "with": "con Sangue, sudore e lacrime"

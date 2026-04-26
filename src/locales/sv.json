@@ -61,6 +61,10 @@
     "loading": "Loggar in...",
     "error": "Fel användarnamn eller lösenord."
   },
+  "theme": {
+    "earth": "Jord",
+    "ocean": "Hav"
+  },
   "footer": {
     "builtBy": "Byggd av",
     "with": "med Blod, svett och tårar"
