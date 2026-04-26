@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
-import { withStyles } from '@mui/styles';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 import linkImage from '../../../assets/www.white.png';
 
-const HtmlTooltip = withStyles(() => ({
-  tooltip: {
+const HtmlTooltip = styled(Tooltip)(() => ({
+  [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#f5f5f9',
     color: 'rgba(0, 0, 0, 0.87)',
     maxWidth: 250,
     border: '1px solid #dadde9',
   },
-}))(Tooltip);
+}));
 
 const WriterUrl = ({ params }) => (
   <HtmlTooltip

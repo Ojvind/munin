@@ -1,37 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import { withStyles } from '@mui/styles';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
-/*
-=== variant ===
-'h1'
-| 'h2'
-| 'h3'
-| 'h4'
-| 'h5'
-| 'h6'
-| 'subtitle1'
-| 'subtitle2'
-| 'body1'
-| 'body2'
-| 'caption'
-| 'button'
-| 'overline'
-| 'srOnly'
-| 'inherit'
-*/
-
-const HtmlTooltip = withStyles((theme) => ({
-  tooltip: {
+const HtmlTooltip = styled(Tooltip)(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.background.elevated || '#f5f5f9',
     color: theme.palette.text.primary,
     maxWidth: 250,
     border: `1px solid ${theme.palette.divider}`,
     borderRadius: theme.shape.borderRadius,
   },
-}))(Tooltip);
+}));
 
 const Label = ({
   variant,
