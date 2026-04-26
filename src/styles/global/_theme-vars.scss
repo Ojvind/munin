@@ -1,0 +1,29 @@
+[data-theme="earth"] {
+  --color-nav-bg:           #3d3525;
+  --color-card-bg:          #f5eadb;
+  --color-card-border:      #edf0f2;
+  --color-card-shadow:      0 1px 4px rgba(0, 0, 0, 0.06);
+  --color-link:             #b08a5a;
+  --color-link-hover:       #c9a478;
+  --color-link-active:      #d8ba96;
+}
+
+[data-theme="ocean"] {
+  --color-nav-bg:           #1e2d38;
+  --color-card-bg:          #d4dde2;
+  --color-card-border:      #edf0f2;
+  --color-card-shadow:      0 1px 4px rgba(0, 0, 0, 0.06);
+  --color-link:             #2e6e8e;
+  --color-link-hover:       #4185a8;
+  --color-link-active:      #5a9dbd;
+}
+
+[data-theme="dark"] {
+  --color-nav-bg:           #12131f;
+  --color-card-bg:          linear-gradient(135deg, #2a2b3d 0%, #1a1b2e 55%);
+  --color-card-border:      #2d3748;
+  --color-card-shadow:      0 1px 4px rgba(0, 0, 0, 0.4);
+  --color-link:             #9589d6;
+  --color-link-hover:       #a99ee0;
+  --color-link-active:      #7c6fcd;
+}

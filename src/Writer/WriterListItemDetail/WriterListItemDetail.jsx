@@ -48,7 +48,10 @@ function WriterListItemDetail(props) {
 
   return (
     <div>
-      <div className="list-item-detail" style={{ position: 'relative' }}>
+      <div
+        className="list-item-detail"
+        style={{ position: 'relative' }}
+      >
         {
           (!edit)
             ? (

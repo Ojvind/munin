@@ -8,23 +8,9 @@ a {
   text-decoration: none;
   transition: color 0.25s ease-in-out;
 
-  [data-theme="earth"] & {
-    color: #b08a5a;
-    &:hover { color: #c9a478; opacity: 0.8; }
-    &:active { color: #d8ba96; }
-  }
-
-  [data-theme="ocean"] & {
-    color: #2e6e8e;
-    &:hover { color: #4185a8; opacity: 0.8; }
-    &:active { color: #5a9dbd; }
-  }
-
-  [data-theme="dark"] & {
-    color: #9589d6;
-    &:hover { color: #a99ee0; opacity: 0.9; }
-    &:active { color: #7c6fcd; }
-  }
+  color: var(--color-link);
+  &:hover { color: var(--color-link-hover); opacity: 0.8; }
+  &:active { color: var(--color-link-active); }
 }
 
 body {
