@@ -64,13 +64,15 @@ function WriterListItemDetail(props) {
                 </IconButton>
                 <div className="list-item-detail__row">
                   <div className="list-item-detail__row__column">
-                    <div style={{
-                      width: '200px',
-                      height: '200px',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                      flexShrink: 0,
-                    }}
+                    <div
+                      className="list-item-detail__portrait"
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                        borderRadius: '6px',
+                        overflow: 'hidden',
+                        flexShrink: 0,
+                      }}
                     >
                       <img
                         src={avatarURL}

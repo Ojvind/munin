@@ -11,11 +11,12 @@
 
   background-color: var(--color-nav-bg);
 }
-@media only screen and (max-device-width: 480px) {
+@media (max-width: 600px) {
   .Navigation {
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    gap: 4px;
+    padding: 6px 0;
   }
 }
 .Navigation-link {
@@ -46,11 +47,13 @@
 
   &:hover { opacity: 1; }
 }
-@media only screen and (max-device-width: 480px) {
+@media (max-width: 600px) {
   .Navigation-link {
-    padding: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
   }
   .Navigation-search {
-    padding: 10px 10px;
+    padding: 6px 8px;
   }
 }

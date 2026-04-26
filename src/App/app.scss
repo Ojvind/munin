@@ -14,13 +14,13 @@
     padding: 40px;
   }
 
-  @media only screen and (max-device-width: 480px) {
-    &-content_large-header {
-      margin-top: 123px;
-    }
+  @media (max-width: 600px) {
+    &-content_large-header,
     &-content_small-header {
-      margin-top: 68px;
+      margin-top: 80px;
+      margin-bottom: 60px;
+      padding: 16px;
     }
-  }  
+  }
 }
 

@@ -11,9 +11,11 @@
   background-color: var(--color-nav-bg);
 }
 
-@media only screen and (max-device-width: 480px) {
+@media (max-width: 600px) {
   .Footer {
     text-align: center;
+    padding: 12px;
+    font-size: 0.8rem;
   }
 }
 

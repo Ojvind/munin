@@ -42,3 +42,24 @@
     width: 5em;
   }
 }
+
+@media (max-width: 600px) {
+  .list-item-detail {
+    flex-direction: column;
+    padding: 16px;
+
+    &__row {
+      flex-direction: column;
+    }
+
+    &__portrait {
+      width: 100% !important;
+      height: 220px !important;
+      margin-bottom: 16px;
+    }
+
+    &__row__column:nth-child(2) {
+      padding-left: 0;
+    }
+  }
+}
