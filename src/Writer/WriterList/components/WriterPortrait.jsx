@@ -14,7 +14,12 @@ const WriterPortrait = ({ params }) => {
         <img
           src={src}
           alt="Writer portrait"
-          style={{ width: '300px', height: '300px', objectFit: 'cover' }}
+          style={{
+            width: '300px',
+            height: '300px',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
         />
       )}
       placement="right"
@@ -26,18 +31,20 @@ const WriterPortrait = ({ params }) => {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        padding: '2px',
-        boxSizing: 'border-box',
       }}
       >
         <img
           src={src}
           alt="Writer portrait"
           style={{
-            width: '100%',
-            height: '100%',
+            width: '60px',
+            height: '60px',
+            minWidth: '60px',
+            minHeight: '60px',
             objectFit: 'cover',
+            objectPosition: 'center top',
             borderRadius: '4px',
+            display: 'block',
           }}
         />
       </div>

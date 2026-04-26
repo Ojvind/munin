@@ -61,7 +61,7 @@ const AllBooksContainer = () => {
   }
   return (
     <div className="app-content_small-header">
-      <h1>{t('nav.books')}</h1>
+      <h2>{t('nav.books')}</h2>
       <BookList
         books={data.allBooks}
         loading={loading}

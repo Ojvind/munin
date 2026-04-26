@@ -20,6 +20,7 @@ const BookList = ({
       className="book-list"
       pageSize={100}
       maxRows={compact ? 8 : null}
+      rowHeight={72}
     >
       {t('nav.books')}
     </EntityList>

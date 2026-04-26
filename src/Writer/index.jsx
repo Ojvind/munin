@@ -33,7 +33,7 @@ const WriterContainer = () => {
   return (
     <div className="app-content_small-header">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <h1>{t('nav.writers')}</h1>
+        <h2>{t('nav.writers')}</h2>
         <Button onClick={handleOpen}>{t('writer.createNew')}</Button>
         <Modal
           open={open}

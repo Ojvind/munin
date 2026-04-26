@@ -8,7 +8,7 @@ import FetchMore from '../../FetchMore';
 
 const LOCALE_MAP = { it: itIT, sv: svSE, en: enUS };
 
-const ROW_HEIGHT = 52;
+const DEFAULT_ROW_HEIGHT = 52;
 const HEADER_HEIGHT = 56;
 const FOOTER_HEIGHT = 52;
 
@@ -25,6 +25,7 @@ const EntityList = ({
   disableSelectionOnClick = false,
   height = '60em',
   maxRows = null,
+  rowHeight = DEFAULT_ROW_HEIGHT,
   children,
 }) => {
   const { i18n } = useTranslation();
@@ -39,7 +40,7 @@ const EntityList = ({
   }, []);
 
   const computedHeight = maxRows != null
-    ? `${Math.min(visibleCount, maxRows) * ROW_HEIGHT + HEADER_HEIGHT + FOOTER_HEIGHT}px`
+    ? `${Math.min(visibleCount, maxRows) * rowHeight + HEADER_HEIGHT + FOOTER_HEIGHT}px`
     : height;
 
   const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -67,6 +68,7 @@ const EntityList = ({
         onStateChange={handleStateChange}
         rows={entities.edges}
         columns={columns}
+        rowHeight={rowHeight}
         pageSize={pageSize}
         rowsPerPageOptions={rowsPerPageOptions}
         checkboxSelection={checkboxSelection}
@@ -134,6 +136,7 @@ EntityList.propTypes = {
   disableSelectionOnClick: PropTypes.bool,
   height: PropTypes.string,
   maxRows: PropTypes.number,
+  rowHeight: PropTypes.number,
   children: PropTypes.node,
 };
 
@@ -145,6 +148,7 @@ EntityList.defaultProps = {
   disableSelectionOnClick: false,
   height: '60em',
   maxRows: null,
+  rowHeight: DEFAULT_ROW_HEIGHT,
   children: null,
 };
 

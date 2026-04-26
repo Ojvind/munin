@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 import BookListItemDetailView from './BookListItemDetailView';
 import BookListItemDetailEdit from './BookListItemDetailEdit';
@@ -27,19 +28,28 @@ function BookListItemDetail(props) {
 
   return (
     <div>
-      <div className="list-item-detail">
+      <div className="list-item-detail" style={{ position: 'relative' }}>
         {
           (!edit)
             ? (
-              <BookListItemDetailView
-                book={book}
-                avatarURL={avatarURL}
-                description={description}
-                yearPublished={yearPublished}
-                yearRead={yearRead}
-                url={url}
-                title={title}
-              />
+              <>
+                <IconButton
+                  size="small"
+                  onClick={() => toggleEdit(true)}
+                  style={{ position: 'absolute', top: 8, right: 8 }}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+                <BookListItemDetailView
+                  book={book}
+                  avatarURL={avatarURL}
+                  description={description}
+                  yearPublished={yearPublished}
+                  yearRead={yearRead}
+                  url={url}
+                  title={title}
+                />
+              </>
             )
             : (
               <BookListItemDetailEdit
@@ -62,21 +72,6 @@ function BookListItemDetail(props) {
                 toggleEdit={toggleEdit}
                 edit={edit}
               />
-            )
-        }
-      </div>
-      <div>
-        {
-          (!edit)
-            ? (
-              <Button
-                onClick={() => toggleEdit(!edit)}
-              >
-                Modifica Libro
-              </Button>
-            )
-            : (
-              <div />
             )
         }
       </div>

@@ -44,7 +44,7 @@ const useBookColumns = () => {
     {
       field: 'portraitimageurl',
       headerName: ' ',
-      width: 75,
+      width: 72,
       sortable: false,
       disableColumnMenu: true,
       align: 'center',
