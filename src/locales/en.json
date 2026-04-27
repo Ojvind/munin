@@ -34,10 +34,14 @@
     "edit": "Edit book",
     "fields": {
       "title": "Title",
+      "author": "Author",
       "url": "URL",
       "description": "Description",
       "yearPublished": "Year published",
       "yearRead": "Year read"
+    },
+    "detail": {
+      "publishedAndRead": "This book was published in {{yearPublished}} and I read it in {{yearRead}}"
     },
     "delete": {
       "title": "Delete book?",

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Label from '../../Shared/components/Label';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
@@ -15,6 +16,7 @@ function BookListItemDetailView({
   url,
   title,
 }) {
+  const { t } = useTranslation();
   return (
     <div className="full-width">
       <div className="list-item-detail__row">
@@ -27,7 +29,7 @@ function BookListItemDetailView({
         </div>
         <div className="list-item-detail__row__column">
           <Label variant="subtitle2">
-            Titolo:
+            {`${t('book.fields.title')}:`}
           </Label>
           <Label
             variant="h5"
@@ -39,7 +41,7 @@ function BookListItemDetailView({
           <br />
           <div>
             <Label variant="subtitle2">
-              Autore:
+              {`${t('book.fields.author')}:`}
             </Label>
             <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
               {`${book.writer.name} ${book.writer.surname}`}
@@ -48,7 +50,7 @@ function BookListItemDetailView({
           <br />
           <div>
             <Label variant="subtitle2">
-              Descrizione:
+              {`${t('book.fields.description')}:`}
             </Label>
           </div>
           <div className="break" />
@@ -57,7 +59,7 @@ function BookListItemDetailView({
           </div>
           <br />
           <Label variant="h6">
-            {` Questo libro è stato pubblicato nel ${yearPublished} e l'ho letto nel ${yearRead}`}
+            {t('book.detail.publishedAndRead', { yearPublished, yearRead })}
           </Label>
         </div>
       </div>

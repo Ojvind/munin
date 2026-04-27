@@ -34,10 +34,14 @@
     "edit": "Modifica Libro",
     "fields": {
       "title": "Titolo",
+      "author": "Autore",
       "url": "URL",
       "description": "Descrizione",
       "yearPublished": "Anno di pubblicazione",
       "yearRead": "Ho letto il libro nel"
+    },
+    "detail": {
+      "publishedAndRead": "Questo libro è stato pubblicato nel {{yearPublished}} e l'ho letto nel {{yearRead}}"
     },
     "delete": {
       "title": "Eliminare il libro?",

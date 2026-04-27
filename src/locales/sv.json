@@ -34,10 +34,14 @@
     "edit": "Redigera bok",
     "fields": {
       "title": "Titel",
+      "author": "Författare",
       "url": "URL",
       "description": "Beskrivning",
       "yearPublished": "Publiceringsår",
       "yearRead": "Läste boken år"
+    },
+    "detail": {
+      "publishedAndRead": "Denna bok publicerades {{yearPublished}} och jag läste den {{yearRead}}"
     },
     "delete": {
       "title": "Ta bort bok?",
