@@ -56,7 +56,8 @@
     "yes": "Yes",
     "no": "No",
     "more": "More",
-    "setImage": "Set image"
+    "setImage": "Set image",
+    "opensInNewTab": "Opens in a new tab"
   },
   "auth": {
     "title": "Sign in",

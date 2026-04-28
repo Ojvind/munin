@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 import linkImage from '../../../assets/www.white.png';
 
 const HtmlTooltip = styled(Tooltip)(() => ({
@@ -14,13 +15,14 @@ const HtmlTooltip = styled(Tooltip)(() => ({
   },
 }));
 
-const WriterUrl = ({ params }) => (
+const WriterUrl = ({ params }) => {
+  const { t } = useTranslation();
+  return (
   <HtmlTooltip
     title={(
       <>
         <Typography color="inherit">{params.value}</Typography>
-        <em>opens in a new</em>
-        <b> tab...</b>
+        <em>{t('common.opensInNewTab')}</em>
       </>
     )}
     placement="top"
@@ -37,7 +39,8 @@ const WriterUrl = ({ params }) => (
       />
     </a>
   </HtmlTooltip>
-);
+  );
+};
 
 WriterUrl.propTypes = {
   params: PropTypes.shape({

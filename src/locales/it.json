@@ -56,7 +56,8 @@
     "yes": "Sì",
     "no": "No",
     "more": "Altro",
-    "setImage": "Imposta immagine"
+    "setImage": "Imposta immagine",
+    "opensInNewTab": "Si apre in una nuova scheda"
   },
   "auth": {
     "title": "Accedi",

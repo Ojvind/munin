@@ -56,7 +56,8 @@
     "yes": "Ja",
     "no": "Nej",
     "more": "Mer",
-    "setImage": "Välj bild"
+    "setImage": "Välj bild",
+    "opensInNewTab": "Öppnas i ny flik"
   },
   "auth": {
     "title": "Logga in",

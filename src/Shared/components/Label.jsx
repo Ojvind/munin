@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 const HtmlTooltip = styled(Tooltip)(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
@@ -23,6 +24,7 @@ const Label = ({
   children,
   ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => {
+  const { t } = useTranslation();
   if (isLink) {
     return (
       <Typography
@@ -35,8 +37,7 @@ const Label = ({
               <Typography color="inherit">
                 {url}
               </Typography>
-              <em>opens in a new</em>
-              <b> tab...</b>
+              <em>{t('common.opensInNewTab')}</em>
             </>
           )}
           placement="top"

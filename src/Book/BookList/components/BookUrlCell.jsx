@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 import linkImage from '../../../assets/www.white.png';
 
 const HtmlTooltip = styled(Tooltip)(() => ({
@@ -14,13 +15,14 @@ const HtmlTooltip = styled(Tooltip)(() => ({
   },
 }));
 
-const BookUrlCell = ({ params }) => (
+const BookUrlCell = ({ params }) => {
+  const { t } = useTranslation();
+  return (
   <HtmlTooltip
     title={(
       <>
         <Typography color="inherit">{params.value}</Typography>
-        <em>opens in a new</em>
-        <b> tab...</b>
+        <em>{t('common.opensInNewTab')}</em>
       </>
     )}
     placement="top"
@@ -34,7 +36,8 @@ const BookUrlCell = ({ params }) => (
       />
     </a>
   </HtmlTooltip>
-);
+  );
+};
 
 BookUrlCell.propTypes = {
   params: PropTypes.shape({
