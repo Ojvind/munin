@@ -18,27 +18,27 @@ const HtmlTooltip = styled(Tooltip)(() => ({
 const WriterUrl = ({ params }) => {
   const { t } = useTranslation();
   return (
-  <HtmlTooltip
-    title={(
-      <>
-        <Typography color="inherit">{params.value}</Typography>
-        <em>{t('common.opensInNewTab')}</em>
-      </>
-    )}
-    placement="top"
-    arrow
-  >
-    <a
-      target="_new"
-      href={params.value}
+    <HtmlTooltip
+      title={(
+        <>
+          <Typography color="inherit">{params.value}</Typography>
+          <em>{t('common.opensInNewTab')}</em>
+        </>
+      )}
+      placement="top"
+      arrow
     >
-      <img
-        src={linkImage}
-        alt="URL to homepage"
-        width="20px"
-      />
-    </a>
-  </HtmlTooltip>
+      <a
+        target="_new"
+        href={params.value}
+      >
+        <img
+          src={linkImage}
+          alt="URL to homepage"
+          width="20px"
+        />
+      </a>
+    </HtmlTooltip>
   );
 };
 

@@ -18,24 +18,24 @@ const HtmlTooltip = styled(Tooltip)(() => ({
 const BookUrlCell = ({ params }) => {
   const { t } = useTranslation();
   return (
-  <HtmlTooltip
-    title={(
-      <>
-        <Typography color="inherit">{params.value}</Typography>
-        <em>{t('common.opensInNewTab')}</em>
-      </>
-    )}
-    placement="top"
-    arrow
-  >
-    <a target="_new" href={params.value} rel="noopener noreferrer">
-      <img
-        src={linkImage}
-        alt="URL to homepage"
-        width="20px"
-      />
-    </a>
-  </HtmlTooltip>
+    <HtmlTooltip
+      title={(
+        <>
+          <Typography color="inherit">{params.value}</Typography>
+          <em>{t('common.opensInNewTab')}</em>
+        </>
+      )}
+      placement="top"
+      arrow
+    >
+      <a target="_new" href={params.value} rel="noopener noreferrer">
+        <img
+          src={linkImage}
+          alt="URL to homepage"
+          width="20px"
+        />
+      </a>
+    </HtmlTooltip>
   );
 };
 
