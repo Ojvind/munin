@@ -26,12 +26,18 @@
   text-transform: uppercase;
   padding: 20px 20px 20px 40px;
   text-decoration: none;
+  white-space: nowrap;
 
   a { color: #ffffff; }
 
   a,
   span,
   button { margin: 0 6px; }
+
+  @media (max-width: 1050px) {
+    letter-spacing: 2px;
+    padding-left: 20px;
+  }
 
   @media (max-width: 768px) {
     width: 100%;
