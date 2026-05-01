@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const Link = ({
-  newWindow = true, children, className, href, toolTip,
+  newWindow = true, children, className = '', href, toolTip = '',
 }) => {
   let link = '';
   let klass = '';
@@ -43,12 +43,6 @@ Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
   toolTip: PropTypes.string,
-};
-
-Link.defaultProps = {
-  newWindow: true,
-  className: '',
-  toolTip: '',
 };
 
 export default Link;

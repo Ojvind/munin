@@ -33,7 +33,6 @@ const WriterList = ({ writers, loading, fetchMore }) => {
       pageSize={50}
       rowsPerPageOptions={[50, 100]}
       disableSelectionOnClick
-      maxRows={15}
       rowHeight={72}
     >
       {t('nav.writers')}

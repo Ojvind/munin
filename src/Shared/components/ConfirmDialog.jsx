@@ -9,15 +9,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import PropTypes from 'prop-types';
 
-const ConfirmDialog = (props) => {
+const ConfirmDialog = ({
+  title = '',
+  children,
+  open,
+  setOpen,
+  onConfirm,
+}) => {
   const { t } = useTranslation();
-  const {
-    title,
-    children,
-    open,
-    setOpen,
-    onConfirm,
-  } = props;
 
   return (
     <Dialog
@@ -54,10 +53,6 @@ ConfirmDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
-};
-
-ConfirmDialog.defaultProps = {
-  title: '',
 };
 
 export default ConfirmDialog;

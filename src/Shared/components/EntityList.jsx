@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   DataGrid, itIT, svSE, enUS,
@@ -9,8 +9,6 @@ import FetchMore from '../../FetchMore';
 const LOCALE_MAP = { it: itIT, sv: svSE, en: enUS };
 
 const DEFAULT_ROW_HEIGHT = 52;
-const HEADER_HEIGHT = 56;
-const FOOTER_HEIGHT = 52;
 
 const EntityList = ({
   entities,
@@ -18,31 +16,17 @@ const EntityList = ({
   fetchMore,
   columns,
   entityName,
-  className,
-  pageSize,
+  className = '',
+  pageSize = 100,
   rowsPerPageOptions = [50, 100],
   checkboxSelection = false,
   disableSelectionOnClick = false,
-  height = '60em',
-  maxRows = null,
   rowHeight = DEFAULT_ROW_HEIGHT,
   initialState = {},
-  children,
+  children = null,
 }) => {
   const { i18n } = useTranslation();
   const locale = LOCALE_MAP[i18n.language] || itIT;
-  const [visibleCount, setVisibleCount] = useState(entities.edges.length);
-
-  const handleStateChange = useCallback((state) => {
-    const lookup = state?.filter?.visibleRowsLookup;
-    if (lookup) {
-      setVisibleCount(Object.values(lookup).filter(Boolean).length);
-    }
-  }, []);
-
-  const computedHeight = maxRows != null
-    ? `${Math.min(visibleCount, maxRows) * rowHeight + HEADER_HEIGHT + FOOTER_HEIGHT}px`
-    : height;
 
   const updateQuery = (previousResult, { fetchMoreResult }) => {
     if (!fetchMoreResult) {
@@ -63,10 +47,9 @@ const EntityList = ({
   };
 
   return (
-    <div className={className} style={{ minWidth: 0, overflow: 'hidden' }}>
+    <div className={className} style={{ minWidth: 0, overflowX: 'hidden' }}>
       <DataGrid
         className={`${className}__datagrid`}
-        onStateChange={handleStateChange}
         rows={entities.edges}
         columns={columns}
         rowHeight={rowHeight}
@@ -76,14 +59,8 @@ const EntityList = ({
         disableSelectionOnClick={disableSelectionOnClick}
         localeText={locale.components.MuiDataGrid.defaultProps.localeText}
         initialState={initialState}
-        autoHeight={false}
+        autoHeight
         sx={{
-          height: computedHeight,
-          maxHeight: computedHeight,
-          '& .MuiDataGrid-root': {
-            height: computedHeight,
-            maxHeight: computedHeight,
-          },
           '& .MuiDataGrid-columnHeaders': { overflow: 'visible !important' },
           '& .MuiDataGrid-columnHeader': { overflow: 'visible !important' },
           '& .MuiDataGrid-columnHeaderDraggableContainer': { overflow: 'visible !important' },
@@ -136,24 +113,9 @@ EntityList.propTypes = {
   rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
   checkboxSelection: PropTypes.bool,
   disableSelectionOnClick: PropTypes.bool,
-  height: PropTypes.string,
-  maxRows: PropTypes.number,
   rowHeight: PropTypes.number,
   initialState: PropTypes.shape({}),
   children: PropTypes.node,
-};
-
-EntityList.defaultProps = {
-  className: '',
-  pageSize: 100,
-  rowsPerPageOptions: [50, 100],
-  checkboxSelection: false,
-  disableSelectionOnClick: false,
-  height: '60em',
-  maxRows: null,
-  rowHeight: DEFAULT_ROW_HEIGHT,
-  initialState: {},
-  children: null,
 };
 
 export default EntityList;

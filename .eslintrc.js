@@ -27,5 +27,6 @@ module.exports = {
       namedComponents: ['arrow-function', 'function-declaration'],
       unnamedComponents: ['arrow-function', 'function-expression'],
     }],
+    'react/require-default-props': 'off',
   },
 };

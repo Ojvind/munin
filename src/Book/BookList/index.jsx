@@ -7,9 +7,7 @@ import EntityList from '../../Shared/components/EntityList';
 import BookMobileCard from './components/BookMobileCard';
 import useBookColumns from './config/columns';
 
-const BookList = ({
-  books, loading, fetchMore, compact = false,
-}) => {
+const BookList = ({ books, loading, fetchMore }) => {
   const { t } = useTranslation();
   const columns = useBookColumns();
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -33,7 +31,6 @@ const BookList = ({
       entityName="books"
       className="book-list"
       pageSize={100}
-      maxRows={compact ? 8 : null}
       rowHeight={72}
       initialState={{ sorting: { sortModel: [{ field: 'title', sort: 'asc' }] } }}
     >
@@ -52,11 +49,6 @@ BookList.propTypes = {
   }).isRequired,
   loading: PropTypes.bool.isRequired,
   fetchMore: PropTypes.func.isRequired,
-  compact: PropTypes.bool,
-};
-
-BookList.defaultProps = {
-  compact: false,
 };
 
 export default BookList;

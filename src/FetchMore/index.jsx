@@ -6,7 +6,7 @@ import Loading from '../Shared/components/Loading';
 import Button from '../Shared/components/BaseButton';
 
 const FetchMore = ({
-  loading, hasNextPage, variables, updateQuery, fetchMore, children,
+  loading, hasNextPage, variables, updateQuery, fetchMore, children = ' ',
 }) => {
   const { t } = useTranslation();
   return (
@@ -36,10 +36,6 @@ FetchMore.propTypes = {
   updateQuery: PropTypes.func.isRequired,
   fetchMore: PropTypes.func.isRequired,
   children: PropTypes.string,
-};
-
-FetchMore.defaultProps = {
-  children: ' ',
 };
 
 export default FetchMore;
