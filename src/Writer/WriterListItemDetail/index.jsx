@@ -31,6 +31,9 @@ const WriterListItemDetailContainer = () => {
   if (loading) {
     return <Loading />;
   }
+  if (!data?.writer) {
+    return <ErrorMessage error={{ message: 'Writer not found' }} />;
+  }
   return (
     <div>
       <div className="app-content_small-header">
