@@ -54,7 +54,7 @@ function BookListItemDetailView({
             </Label>
           </div>
           <div className="break" />
-          <div>
+          <div style={{ whiteSpace: 'pre-wrap' }}>
             {description}
           </div>
           <br />

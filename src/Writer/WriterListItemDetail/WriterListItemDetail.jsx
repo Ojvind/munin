@@ -25,6 +25,7 @@ function WriterListItemDetail(props) {
   const [surname, onSurnameChange] = useState(writer.surname);
   const [homepage, onHomepageChange] = useState(writer.homepage);
   const [nationality, onNationalityChange] = useState(writer.nationality);
+  const [description, onDescriptionChange] = useState(writer.description);
 
   const {
     avatarURL,
@@ -107,6 +108,13 @@ function WriterListItemDetail(props) {
                       alt={nationality}
                       src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
                     />
+                    {writer.description && (
+                      <>
+                        <br />
+                        <br />
+                        <p style={{ margin: 0, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{writer.description}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -137,6 +145,7 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel={t('writer.fields.surname')} value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel={t('writer.fields.homepage')} value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel={t('writer.fields.nationality')} value={nationality} />
+                <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel={t('writer.fields.description')} value={description} multiline />
                 <div className="list-item-detail__row list-item-detail__row__button">
                   <SaveButton
                     onClick={async () => {
@@ -149,6 +158,7 @@ function WriterListItemDetail(props) {
                             homepage,
                             portraitimageurl,
                             nationality,
+                            description,
                           },
                         });
                         toggleEdit(!edit);
@@ -181,6 +191,7 @@ WriterListItemDetail.propTypes = {
     homepage: PropTypes.string,
     nationality: PropTypes.string,
     portraitimageurl: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
 };
 

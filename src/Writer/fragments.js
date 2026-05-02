@@ -8,6 +8,7 @@ export const WRITER_FRAGMENT = gql`
     homepage
     portraitimageurl
     nationality
+    description
   }
 `;
 

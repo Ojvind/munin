@@ -14,6 +14,7 @@ function CreateWriter({ onSuccess }) {
   const [surname, onSurnameChange] = useState('');
   const [homepage, onHomepageChange] = useState('');
   const [nationality, onNationalityChange] = useState('');
+  const [description, onDescriptionChange] = useState('');
 
   const [createWriter, { loading, error }] = useMutation(CREATE_WRITER, {
     variables: {
@@ -22,6 +23,7 @@ function CreateWriter({ onSuccess }) {
       homepage,
       portraitimageurl: '',
       nationality,
+      description,
     },
     refetchQueries: [
       { query: GET_WRITERS },
@@ -51,6 +53,9 @@ function CreateWriter({ onSuccess }) {
         </div>
         <div className="create-writer__input">
           <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" />
+        </div>
+        <div className="create-writer__input">
+          <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel="Descrizione" multiline />
         </div>
         <div className="create-writer__button">
           <SaveButton onClick={handleSave} disabled={loading}>

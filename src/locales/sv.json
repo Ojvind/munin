@@ -13,7 +13,8 @@
       "name": "Namn",
       "surname": "Efternamn",
       "homepage": "Hemsida",
-      "nationality": "Nationalitet"
+      "nationality": "Nationalitet",
+      "description": "Beskrivning"
     },
     "delete": {
       "title": "Ta bort författare?",

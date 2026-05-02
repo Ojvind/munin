@@ -13,7 +13,8 @@
       "name": "Nome",
       "surname": "Cognome",
       "homepage": "Homepage",
-      "nationality": "Nazionalità"
+      "nationality": "Nazionalità",
+      "description": "Descrizione"
     },
     "delete": {
       "title": "Eliminare autore?",
