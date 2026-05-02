@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
 import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
@@ -64,11 +65,24 @@ function WriterListItemDetail(props) {
                   <EditIcon fontSize="small" />
                 </IconButton>
                 <div className="list-item-detail__compact">
-                  <img
-                    src={avatarURL}
-                    alt="Avatar"
-                    className="list-item-detail__compact-portrait"
-                  />
+                  <Tooltip
+                    enterDelay={0}
+                    enterNextDelay={0}
+                    title={(
+                      <img
+                        src={avatarURL}
+                        alt="Avatar"
+                        style={{ width: 220, height: 280, objectFit: 'cover', objectPosition: 'center top', display: 'block', borderRadius: 4 }}
+                      />
+                    )}
+                    componentsProps={{ tooltip: { sx: { background: 'none', p: 0, boxShadow: 3 } } }}
+                  >
+                    <img
+                      src={avatarURL}
+                      alt="Avatar"
+                      className="list-item-detail__compact-portrait"
+                    />
+                  </Tooltip>
                   <div className="list-item-detail__compact-meta">
                     <div className="list-item-detail__compact-header">
                       <Label variant="h5">{`${writer.name} ${writer.surname}`}</Label>
