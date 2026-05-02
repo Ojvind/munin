@@ -42,6 +42,45 @@
     width: 5em;
   }
 
+  &__compact {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  &__compact-portrait {
+    width: 88px;
+    height: 88px;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+  }
+
+  &__compact-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__compact-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &__compact-flag {
+    height: 18px;
+    width: auto;
+    border-radius: 2px;
+  }
+
+  &__compact-link {
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }
+
   &__description {
     margin: 16px 0 0;
     padding-top: 16px;

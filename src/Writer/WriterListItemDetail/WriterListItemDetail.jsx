@@ -63,56 +63,35 @@ function WriterListItemDetail(props) {
                 >
                   <EditIcon fontSize="small" />
                 </IconButton>
-                <div className="list-item-detail__row">
-                  <div className="list-item-detail__row__column">
-                    <div
-                      className="list-item-detail__portrait"
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '6px',
-                        overflow: 'hidden',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={avatarURL}
-                        alt="Avatar"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          objectPosition: 'center top',
-                          display: 'block',
-                        }}
-                      />
+                <div className="list-item-detail__compact">
+                  <img
+                    src={avatarURL}
+                    alt="Avatar"
+                    className="list-item-detail__compact-portrait"
+                  />
+                  <div className="list-item-detail__compact-meta">
+                    <div className="list-item-detail__compact-header">
+                      <Label variant="h5">{`${writer.name} ${writer.surname}`}</Label>
+                      {nationality && (
+                        <img
+                          className="list-item-detail__compact-flag"
+                          alt={nationality}
+                          src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
+                        />
+                      )}
                     </div>
-                  </div>
-                  <div className="list-item-detail__row__column">
-                    <Label
-                      variant="h5"
-                    >
-                      {`${writer.name} ${writer.surname}`}
-                    </Label>
-                    <span className="Footer-text">{t('writer.readMore')}</span>
-                    {' '}
-                    <Link
-                      href={writer.homepage}
-                    >
-                      {t('writer.here')}
-                    </Link>
-                    <br />
-                    <br />
-                    <img
-                      className="list-item-detail__icon"
-                      alt={nationality}
-                      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
-                    />
+                    {writer.homepage && (
+                      <div className="list-item-detail__compact-link">
+                        <span className="Footer-text">{t('writer.readMore')}</span>
+                        {' '}
+                        <Link href={writer.homepage}>{t('writer.here')}</Link>
+                      </div>
+                    )}
+                    {writer.description && (
+                      <p className="list-item-detail__description">{writer.description}</p>
+                    )}
                   </div>
                 </div>
-                {writer.description && (
-                  <p className="list-item-detail__description">{writer.description}</p>
-                )}
               </div>
             )
             : (
