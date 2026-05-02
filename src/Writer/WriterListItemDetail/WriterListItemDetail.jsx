@@ -108,15 +108,11 @@ function WriterListItemDetail(props) {
                       alt={nationality}
                       src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
                     />
-                    {writer.description && (
-                      <>
-                        <br />
-                        <br />
-                        <p style={{ margin: 0, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{writer.description}</p>
-                      </>
-                    )}
                   </div>
                 </div>
+                {writer.description && (
+                  <p className="list-item-detail__description">{writer.description}</p>
+                )}
               </div>
             )
             : (
