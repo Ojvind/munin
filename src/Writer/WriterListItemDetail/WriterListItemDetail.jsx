@@ -72,7 +72,14 @@ function WriterListItemDetail(props) {
                       <img
                         src={avatarURL}
                         alt="Avatar"
-                        style={{ width: 220, height: 280, objectFit: 'cover', objectPosition: 'center top', display: 'block', borderRadius: 4 }}
+                        style={{
+                          width: 220,
+                          height: 280,
+                          objectFit: 'cover',
+                          objectPosition: 'center top',
+                          display: 'block',
+                          borderRadius: 4,
+                        }}
                       />
                     )}
                     componentsProps={{ tooltip: { sx: { background: 'none', p: 0, boxShadow: 3 } } }}
