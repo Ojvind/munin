@@ -73,10 +73,10 @@ function WriterListItemDetail(props) {
                         src={avatarURL}
                         alt="Avatar"
                         style={{
-                          width: 220,
-                          height: 280,
-                          objectFit: 'cover',
-                          objectPosition: 'center top',
+                          maxWidth: 320,
+                          maxHeight: 400,
+                          width: 'auto',
+                          height: 'auto',
                           display: 'block',
                           borderRadius: 4,
                         }}
