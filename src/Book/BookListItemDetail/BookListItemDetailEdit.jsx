@@ -81,7 +81,7 @@ function BookListItemDetailEdit({
       <br />
       <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Titolo" value={title} />
       <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="URL" value={url} />
-      <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Descrizione" multiline value={description} />
+      <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Descrizione" multiline value={description} inputProps={{ style: { resize: 'vertical' } }} />
       <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Anno di pubblicazione" value={yearPublished} />
       <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Ho letto il libro nel" value={yearRead} />
       <div className="list-item-detail__row list-item-detail__row__button">

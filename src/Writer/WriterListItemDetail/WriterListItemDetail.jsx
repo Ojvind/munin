@@ -141,7 +141,7 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel={t('writer.fields.surname')} value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel={t('writer.fields.homepage')} value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel={t('writer.fields.nationality')} value={nationality} />
-                <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel={t('writer.fields.description')} value={description} multiline />
+                <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel={t('writer.fields.description')} value={description} multiline inputProps={{ style: { resize: 'vertical' } }} />
                 <div className="list-item-detail__row list-item-detail__row__button">
                   <SaveButton
                     onClick={async () => {
