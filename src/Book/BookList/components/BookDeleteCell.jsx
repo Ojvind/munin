@@ -5,7 +5,7 @@ import DeleteBookMutation from '../../DeleteBook';
 const BookDeleteCell = ({ params }) => (
   <DeleteBookMutation
     bookId={`${params.row.id}`}
-    writerId={`${params.row.writer.id}`}
+    writerId={params.row.writers?.[0]?.id}
   />
 );
 
@@ -13,9 +13,9 @@ BookDeleteCell.propTypes = {
   params: PropTypes.shape({
     row: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      writer: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-      }).isRequired,
+      writers: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+      })),
     }).isRequired,
   }).isRequired,
 };
