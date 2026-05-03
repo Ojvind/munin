@@ -12,7 +12,7 @@ query($cursor: String) {
       description
       portraitimageurl
       createdAt
-      writer {
+      writers {
         id
       }
     }
@@ -36,7 +36,7 @@ query($writerId: ID, $cursor: String) {
         description
         portraitimageurl
         createdAt
-        writer {
+        writers {
           id
         }
       }
@@ -59,7 +59,7 @@ export const GET_BOOK = gql`
       description
       portraitimageurl
       createdAt
-      writer {
+      writers {
         id
         name
         surname

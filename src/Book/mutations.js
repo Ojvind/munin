@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const CREATE_BOOK = gql`
   mutation (
-    $writerId: ID!,
+    $writerIds: [ID!]!,
     $title: String!,
     $url: String,
     $yearPublished: String,
@@ -11,21 +11,21 @@ export const CREATE_BOOK = gql`
     $portraitimageurl: String,
   ) {
     createBook(
-      writerId: $writerId,
+      writerIds: $writerIds,
       title: $title,
-      url: $url
-      yearRead: $yearRead, 
+      url: $url,
+      yearRead: $yearRead,
       yearPublished: $yearPublished,
       description: $description,
       portraitimageurl: $portraitimageurl,
-      ) {
+    ) {
       id
       title
       url
       yearPublished
       yearRead
       description
-      portraitimageurl  
+      portraitimageurl
     }
   }
 `;
@@ -37,12 +37,13 @@ export const DELETE_BOOK = gql`
     deleteBook(
       id: $bookId
     )
-  } 
+  }
 `;
 
 export const UPDATE_BOOK = gql`
   mutation (
     $id: ID!,
+    $writerIds: [ID!],
     $title: String!,
     $url: String,
     $yearPublished: String,
@@ -52,6 +53,7 @@ export const UPDATE_BOOK = gql`
   ) {
     updateBook(
       id: $id,
+      writerIds: $writerIds,
       title: $title,
       url: $url,
       yearPublished: $yearPublished,

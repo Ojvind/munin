@@ -44,9 +44,14 @@ function BookListItemDetailView({
             <Label variant="subtitle2">
               {`${t('book.fields.author')}:`}
             </Label>
-            <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
-              {`${book.writer.name} ${book.writer.surname}`}
-            </RouterLink>
+            {(book.writers || []).map((writer, i) => (
+              <span key={writer.id}>
+                {i > 0 && ', '}
+                <RouterLink to={`/writer/${writer.id}/${writer.name}/${writer.surname}`}>
+                  {`${writer.name} ${writer.surname}`}
+                </RouterLink>
+              </span>
+            ))}
           </div>
           <br />
           <div>
@@ -76,11 +81,11 @@ BookListItemDetailView.propTypes = {
     yearPublished: PropTypes.string,
     description: PropTypes.string,
     portraitimageurl: PropTypes.string,
-    writer: PropTypes.shape({
+    writers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       surname: PropTypes.string,
-    }),
+    })),
   }).isRequired,
   avatarURL: PropTypes.string,
   description: PropTypes.string,

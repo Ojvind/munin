@@ -35,7 +35,7 @@ const BookMobileCard = ({ book }) => {
         {book.url && (
           <BookUrlCell params={{ value: book.url }} />
         )}
-        <DeleteBookMutation bookId={book.id} writerId={book.writer.id} />
+        <DeleteBookMutation bookId={book.id} writerId={book.writers?.[0]?.id} />
       </div>
     </div>
   );
@@ -49,9 +49,9 @@ BookMobileCard.propTypes = {
     yearPublished: PropTypes.number,
     yearRead: PropTypes.number,
     portraitimageurl: PropTypes.string,
-    writer: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
+    writers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+    })),
   }).isRequired,
 };
 

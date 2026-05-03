@@ -20,10 +20,11 @@ const CreateBook = (props) => {
   const [yearPublished, onYearPublishedChange] = useState('');
   const [yearRead, onReadChange] = useState('');
   const [description, onDecriptionChange] = useState('');
+  const [writerIds] = useState([writerId]);
 
   const [createBook, { loading, error }] = useMutation(CREATE_BOOK, {
     variables: {
-      writerId,
+      writerIds,
       title,
       url,
       yearPublished,

@@ -17,6 +17,7 @@ function BookListItemDetail(props) {
   const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
   const [yearRead, onYearReadChange] = useState(book.yearRead);
   const [description, onDescriptionChange] = useState(book.description);
+  const [writerIds, onWriterIdsChange] = useState((book.writers || []).map((w) => w.id));
 
   const {
     avatarURL,
@@ -65,6 +66,8 @@ function BookListItemDetail(props) {
                 onYearReadChange={onYearReadChange}
                 description={description}
                 onDescriptionChange={onDescriptionChange}
+                writerIds={writerIds}
+                onWriterIdsChange={onWriterIdsChange}
                 portraitimageurl={portraitimageurl}
                 fileUploadRef={fileUploadRef}
                 handleImageUpload={handleImageUpload}
@@ -88,11 +91,11 @@ BookListItemDetail.propTypes = {
     yearPublished: PropTypes.string,
     description: PropTypes.string,
     portraitimageurl: PropTypes.string,
-    writer: PropTypes.shape({
+    writers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       surname: PropTypes.string,
-    }),
+    })),
   }).isRequired,
 };
 
