@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Label from '../../Shared/components/Label';
@@ -54,9 +55,8 @@ function BookListItemDetailView({
             </Label>
           </div>
           <div className="break" />
-          <div style={{ whiteSpace: 'pre-wrap' }}>
-            {description}
-          </div>
+          {/* eslint-disable-next-line react/no-danger */}
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }} />
           <br />
           <Label variant="h6">
             {t('book.detail.publishedAndRead', { yearPublished, yearRead })}

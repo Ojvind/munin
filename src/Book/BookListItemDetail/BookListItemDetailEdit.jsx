@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { useMutation } from '@apollo/client';
 import Input from '../../Shared/components/Input';
 import SaveButton from '../../Shared/components/SaveButton';
+import RichTextEditor from '../../Shared/components/RichTextEditor';
 import ErrorMessage from '../../Error';
 import DefaultImage from '../../assets/default-book.svg';
 import { UPDATE_BOOK } from '../mutations';
@@ -81,7 +82,7 @@ function BookListItemDetailEdit({
       <br />
       <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Titolo" value={title} />
       <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="URL" value={url} />
-      <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Descrizione" multiline value={description} inputProps={{ style: { resize: 'vertical' } }} />
+      <RichTextEditor label="Descrizione" value={description} onChange={onDescriptionChange} />
       <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Anno di pubblicazione" value={yearPublished} />
       <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Ho letto il libro nel" value={yearRead} />
       <div className="list-item-detail__row list-item-detail__row__button">

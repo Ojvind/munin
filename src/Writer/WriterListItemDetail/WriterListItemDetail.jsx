@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
@@ -11,6 +12,7 @@ import Input from '../../Shared/components/Input';
 import Label from '../../Shared/components/Label';
 import Link from '../../Shared/components/Link';
 import SaveButton from '../../Shared/components/SaveButton';
+import RichTextEditor from '../../Shared/components/RichTextEditor';
 import { useImageUpload } from '../../Shared/hooks/useImageUpload';
 
 import { UPDATE_WRITER } from '../mutations';
@@ -111,7 +113,8 @@ function WriterListItemDetail(props) {
                   </div>
                 </div>
                 {writer.description && (
-                  <p className="list-item-detail__description">{writer.description}</p>
+                  // eslint-disable-next-line react/no-danger
+                  <div className="list-item-detail__description" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(writer.description) }} />
                 )}
               </div>
             )
@@ -141,7 +144,7 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel={t('writer.fields.surname')} value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel={t('writer.fields.homepage')} value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel={t('writer.fields.nationality')} value={nationality} />
-                <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel={t('writer.fields.description')} value={description} multiline inputProps={{ style: { resize: 'vertical' } }} />
+                <RichTextEditor label={t('writer.fields.description')} value={description} onChange={onDescriptionChange} />
                 <div className="list-item-detail__row list-item-detail__row__button">
                   <SaveButton
                     onClick={async () => {

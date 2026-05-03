@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 import Input from '../../Shared/components/Input';
 import SaveButton from '../../Shared/components/SaveButton';
+import RichTextEditor from '../../Shared/components/RichTextEditor';
 import { CREATE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 
@@ -55,7 +56,7 @@ function CreateWriter({ onSuccess }) {
           <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onDescriptionChange(e.target.value)} id="description" inputLabel="Descrizione" multiline />
+          <RichTextEditor label="Descrizione" value={description} onChange={onDescriptionChange} />
         </div>
         <div className="create-writer__button">
           <SaveButton onClick={handleSave} disabled={loading}>
