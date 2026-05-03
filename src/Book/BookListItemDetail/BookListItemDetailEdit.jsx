@@ -97,7 +97,7 @@ function BookListItemDetailEdit({
       <Autocomplete
         multiple
         options={allWriters}
-        getOptionLabel={(w) => `${w.name} ${w.surname}`}
+        getOptionLabel={(w) => [w.name, w.surname].filter(Boolean).join(' ')}
         value={selectedWriters}
         onChange={(_e, selected) => onWriterIdsChange(selected.map((w) => w.id))}
         isOptionEqualToValue={(option, value) => option.id === value.id}

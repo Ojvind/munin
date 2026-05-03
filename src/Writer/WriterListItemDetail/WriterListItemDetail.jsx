@@ -94,7 +94,7 @@ function WriterListItemDetail(props) {
                   </Tooltip>
                   <div className="list-item-detail__compact-meta">
                     <div className="list-item-detail__compact-header">
-                      <Label variant="h4">{`${writer.name} ${writer.surname}`}</Label>
+                      <Label variant="h4">{[writer.name, writer.surname].filter(Boolean).join(' ')}</Label>
                       {nationality && (
                         <img
                           className="list-item-detail__compact-flag"

@@ -16,17 +16,15 @@ const WriterMobileCard = ({ writer }) => {
     <div className="mobile-card">
       <img
         src={src}
-        alt={`${writer.name} ${writer.surname}`}
+        alt={[writer.name, writer.surname].filter(Boolean).join(' ')}
         className="mobile-card__portrait"
       />
       <div className="mobile-card__content">
         <Link
-          to={`/writer/${writer.id}/${writer.name}/${writer.surname}`}
+          to={`/writer/${writer.id}/${writer.name || ''}/${writer.surname}`}
           className="mobile-card__name"
         >
-          {writer.name}
-          {' '}
-          {writer.surname}
+          {[writer.name, writer.surname].filter(Boolean).join(' ')}
         </Link>
         {writer.nationality && (
           <img

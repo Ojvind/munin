@@ -47,8 +47,8 @@ function BookListItemDetailView({
             {(book.writers || []).map((writer, i) => (
               <span key={writer.id}>
                 {i > 0 && ', '}
-                <RouterLink to={`/writer/${writer.id}/${writer.name}/${writer.surname}`}>
-                  {`${writer.name} ${writer.surname}`}
+                <RouterLink to={`/writer/${writer.id}/${writer.name || ''}/${writer.surname}`}>
+                  {[writer.name, writer.surname].filter(Boolean).join(' ')}
                 </RouterLink>
               </span>
             ))}
