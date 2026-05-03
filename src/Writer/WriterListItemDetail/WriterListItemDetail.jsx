@@ -108,11 +108,11 @@ function WriterListItemDetail(props) {
                         <Link href={writer.homepage}>{t('writer.here')}</Link>
                       </div>
                     )}
-                    {writer.description && (
-                      <p className="list-item-detail__description">{writer.description}</p>
-                    )}
                   </div>
                 </div>
+                {writer.description && (
+                  <p className="list-item-detail__description">{writer.description}</p>
+                )}
               </div>
             )
             : (
