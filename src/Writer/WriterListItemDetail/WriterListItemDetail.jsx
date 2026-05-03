@@ -105,7 +105,7 @@ function WriterListItemDetail(props) {
                     </div>
                     {writer.homepage && (
                       <div className="list-item-detail__compact-link">
-                        <span className="Footer-text">{t('writer.readMore')}</span>
+                        <span>{t('writer.readMore')}</span>
                         {' '}
                         <Link href={writer.homepage}>{t('writer.here')}</Link>
                       </div>
