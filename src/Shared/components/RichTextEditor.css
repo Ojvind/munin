@@ -66,17 +66,26 @@
 }
 
 /* Dark theme support */
-@media (prefers-color-scheme: dark) {
-  .rich-text-editor__label {
-    color: rgba(255, 255, 255, 0.7);
-  }
+[data-theme="dark"] .rich-text-editor__label {
+  color: rgba(255, 255, 255, 0.7);
+}
 
-  .rich-text-editor__toolbar,
-  .rich-text-editor__content {
-    border-color: rgba(255, 255, 255, 0.23);
-  }
+[data-theme="dark"] .rich-text-editor__toolbar,
+[data-theme="dark"] .rich-text-editor__content {
+  border-color: #2d3748;
+  background: #1a1b2e;
+  color: #e2e8f0;
+}
 
-  .rich-text-editor__content:hover {
-    border-color: rgba(255, 255, 255, 0.87);
-  }
+[data-theme="dark"] .rich-text-editor__content:hover {
+  border-color: rgba(255, 255, 255, 0.87);
+}
+
+[data-theme="dark"] .rich-text-editor__content:focus-within {
+  border-color: #7c6fcd;
+}
+
+[data-theme="dark"] .rich-text-editor__toolbar .MuiIconButton-root.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #9589d6;
 }
