@@ -17,8 +17,13 @@
   background: var(--color-card-bg);
   box-shadow: var(--color-card-shadow);
   
+  &__wrapper {
+    width: 100%;
+  }
+
   &__row {
     display: flex;
+    width: 100%;
     border: red dashed 0px;
 
     &__column {
