@@ -7,250 +7,599 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --gold: #c9a478;
+      --gold-light: #e8d9c4;
+      --bg: #f7f4ef;
+      --text: #2d2a24;
+      --text-muted: #8a7a68;
+      --text-faint: #aaa;
+      --dark: #1a1713;
+    }
+
     body {
       font-family: 'Georgia', serif;
-      background: #f7f4ef;
-      color: #2d2a24;
-      padding: 60px 80px;
-      max-width: 900px;
-      margin: 0 auto;
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    header {
-      border-bottom: 3px solid #c9a478;
-      padding-bottom: 28px;
-      margin-bottom: 48px;
+    /* ── Progress bar ── */
+    #progress-bar {
+      height: 3px;
+      background: var(--gold-light);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+    }
+    #progress-fill {
+      height: 100%;
+      background: var(--gold);
+      transition: width 0.3s ease;
     }
 
-    header h1 {
-      font-size: 2.8rem;
+    /* ── Slide container ── */
+    #slides {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 56px 80px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+
+    .slide.exit {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    /* ── Title slide ── */
+    .slide--title {
+      justify-content: center;
+      align-items: flex-start;
+      background: var(--bg);
+    }
+
+    .slide--title h1 {
+      font-size: 4.5rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #1a1713;
+      letter-spacing: -1px;
+      color: var(--dark);
+      line-height: 1;
     }
 
-    header .subtitle {
-      font-size: 1rem;
-      color: #8a7a68;
-      margin-top: 6px;
+    .slide--title .tagline {
+      font-size: 1.25rem;
+      color: var(--text-muted);
       font-style: italic;
+      margin-top: 14px;
     }
 
-    header .meta {
+    .slide--title .repos {
+      margin-top: 32px;
+      font-family: 'Courier New', monospace;
       font-size: 0.85rem;
-      color: #aaa;
-      margin-top: 4px;
+      color: var(--text-faint);
+      line-height: 2;
+    }
+
+    .slide--title .stat-row {
+      margin-top: 28px;
+      display: flex;
+      gap: 32px;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid var(--gold-light);
+      border-radius: 10px;
+      padding: 16px 24px;
+      min-width: 160px;
+    }
+
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
       font-family: 'Courier New', monospace;
     }
 
-    section {
-      margin-bottom: 44px;
-      page-break-inside: avoid;
+    .stat-box .label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    section h2 {
-      font-size: 1.25rem;
+    /* ── Content slides ── */
+    .slide-label {
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #c9a478;
-      margin-bottom: 14px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #e8d9c4;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #3d3525;
+      letter-spacing: 3px;
+      color: var(--gold);
       margin-bottom: 10px;
     }
 
-    strong {
-      color: #1a1713;
-      font-weight: 600;
+    .slide h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 20px;
     }
 
-    .theme-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 12px;
+    .slide p {
+      font-size: 1rem;
+      color: #3d3525;
+      line-height: 1.75;
+      margin-bottom: 12px;
+      max-width: 680px;
     }
-
-    .theme-chip {
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    .chip-earth  { background: #f0e4d0; color: #6b4c2a; border: 1px solid #c9a478; }
-    .chip-ocean  { background: #d4dde2; color: #1e3a48; border: 1px solid #4e7f96; }
-    .chip-dark   { background: #1a1b2e; color: #9589d6; border: 1px solid #7c6fcd; }
 
     ul {
       list-style: none;
-      padding-left: 0;
-      margin-top: 8px;
+      padding: 0;
+      margin-top: 4px;
+      max-width: 680px;
     }
 
     ul li {
-      padding: 5px 0 5px 20px;
+      padding: 6px 0 6px 22px;
       position: relative;
       font-size: 0.97rem;
       color: #3d3525;
+      line-height: 1.5;
     }
 
     ul li::before {
       content: '→';
       position: absolute;
       left: 0;
-      color: #c9a478;
+      color: var(--gold);
       font-weight: bold;
     }
 
-    .commit-badge {
+    strong { color: var(--dark); font-weight: 600; }
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+      background: var(--gold-light);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ── Theme chips ── */
+    .chip-row { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+    .chip {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .chip-earth  { background: #f0e4d0; color: #6b4c2a; border: 1px solid #c9a478; }
+    .chip-ocean  { background: #d4dde2; color: #1e3a48; border: 1px solid #4e7f96; }
+    .chip-dark   { background: #1a1b2e; color: #9589d6; border: 1px solid #7c6fcd; }
+
+    /* ── Commit badge ── */
+    .badge {
       display: inline-block;
       font-family: 'Courier New', monospace;
-      font-size: 0.75rem;
-      background: #e8d9c4;
+      font-size: 0.72rem;
+      background: var(--gold-light);
       color: #6b4c2a;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
     }
 
-    footer {
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #e8d9c4;
-      font-size: 0.82rem;
-      color: #aaa;
-      font-style: italic;
-      text-align: right;
+    /* ── Two-column layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 8px;
     }
+
+    .col-box {
+      background: white;
+      border: 1px solid var(--gold-light);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .col-box h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    /* ── Navigation ── */
+    #nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 80px;
+      border-top: 1px solid var(--gold-light);
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+
+    #slide-counter {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+    }
+
+    #slide-title-nav {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid var(--gold-light);
+      color: var(--gold);
+      font-size: 1.1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-btn:hover { background: var(--gold-light); }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .nav-group { display: flex; gap: 8px; }
+
+    /* ── Dot nav ── */
+    #dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+    }
+
+    .dot.active { background: var(--gold); }
   </style>
 </head>
 <body>
 
-  <header>
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<div id="slides">
+
+  <!-- 1. Titel -->
+  <div class="slide slide--title active" data-title="Introduktion">
     <h1>Munin</h1>
-    <div class="subtitle">Vad vi byggt — en sammanfattning av projektutvecklingen</div>
-    <div class="meta">Munin (frontend) &nbsp;·&nbsp; 50d63b6 → HEAD &nbsp;·&nbsp; 2025–2026</div>
-    <div class="meta">Yggdrasil (backend) &nbsp;·&nbsp; 6538d68 → HEAD &nbsp;·&nbsp; 2026</div>
-  </header>
-
-  <section>
-    <h2>Infrastruktur &amp; beroenden</h2>
-    <p>
-      Projektet fick ett rejält lyft i grunden — React uppgraderades till <strong>18.3</strong>,
-      <code>@mui/styles</code> fasades ut till förmån för <code>@mui/material/styles</code>,
-      och ESLint konfigurerades om till <strong>airbnb v19</strong>.
-      Alla gamla console.log-rader och oanvända komponenter städades bort.
-    </p>
-  </section>
-
-  <section>
-    <h2>Säkerhet &amp; autentisering (Yggdrasil)</h2>
-    <p>
-      API:et gick från öppet till fullt skyddat. Alla GraphQL-resolvers skyddas nu med
-      <strong><code>isAuthenticated</code></strong> och raderingsoperationer kräver dessutom
-      <strong><code>isAdmin</code></strong> — båda via <code>graphql-resolvers</code>
-      och ett JWT-flöde med <code>SECRET</code> ur miljövariabel.
-    </p>
-    <ul>
-      <li>Inloggning returnerar en JWT-token som klienten sparar i <code>localStorage</code> och skickar som <code>Authorization</code>-header vid varje request</li>
-      <li>API:et validerar token i kontexten — saknas den kastas <code>FORBIDDEN</code> direkt</li>
-      <li>Admin-bootstrapping: <code>signUp</code>-mutationen accepterar ett <code>adminSecret</code> för att kunna sätta admin-flaggan vid första uppstart</li>
-      <li>GraphQL-introspection inaktiverat i produktion — schemat exponeras inte utåt</li>
-      <li>Inloggningsfel ger ett generiskt meddelande — ingen information om huruvida användaren finns (förhindrar username enumeration)</li>
-      <li>Applikationen vägrar starta om <code>SECRET</code>-variabeln saknas (fail fast)</li>
-    </ul>
-    <p>
-      På klientsidan: utloggning rensar både JWT-token och <strong>Apollo-cachen</strong>
-      (<code>client.clearStore()</code>) så att ingen data läcker mellan sessioner.
-    </p>
-  </section>
-
-  <section>
-    <h2>Tre språk — fullt genomfört</h2>
-    <p>
-      Hela UI:t är översatt till <strong>italienska, svenska och engelska</strong> med
-      <code>react-i18next</code>. Alla texter — navigering, formulärfält,
-      bekräftelsedialoger, felmeddelanden, temaknappar — lever i lokaliseringsfiler.
-      I headern väljer man språk via <strong>landsflaggor</strong> och valet sparas
-      i <code>localStorage</code>.
-    </p>
-  </section>
-
-  <section>
-    <h2>Bildhantering</h2>
-    <p>
-      Porträtt och bokomslag fick en genomtänkt hantering — bilderna lagras som
-      <strong>filnamn i databasen</strong> och URL:en byggs från en miljövariabel.
-      Standardbilder visas när foto saknas. Porträtten i listorna renderas som
-      <strong>kvadratiska thumbnails</strong> med hover-preview.
-    </p>
-  </section>
-
-  <section>
-    <h2>Designsystem &amp; teman</h2>
-    <p>
-      Det stora projektet i slutfasen. Vi gick från en hårdkodad mörkgrön färg
-      till ett <strong>dynamiskt temasystem</strong> med tre teman:
-    </p>
-    <div class="theme-row">
-      <span class="theme-chip chip-earth">🟤 Earth — varm beige</span>
-      <span class="theme-chip chip-ocean">🔵 Ocean — stålblå</span>
-      <span class="theme-chip chip-dark">🌙 Dark — lila accent</span>
+    <div class="tagline">Vad vi byggt — en genomgång av projektutvecklingen</div>
+    <div class="repos">
+      Munin (frontend React) &nbsp;·&nbsp; 50d63b6 → HEAD<br>
+      Yggdrasil (backend Node/GraphQL) &nbsp;·&nbsp; 6538d68 → HEAD
     </div>
-    <p style="margin-top:14px;">
-      Temavalet sparas i <code>localStorage</code>, <code>data-theme</code> sätts på
-      <code>body</code>, och alla färger definieras centralt som
-      <strong>CSS custom properties</strong> i <code>_theme-vars.scss</code> —
-      inga hårdkodade färger i komponenterna.
-    </p>
-  </section>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="num">99</div>
+        <div class="label">filer ändrade</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">+32 k</div>
+        <div class="label">rader tillagda</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">−9 k</div>
+        <div class="label">rader borttagna</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">12</div>
+        <div class="label">stora features</div>
+      </div>
+    </div>
+  </div>
 
-  <section>
-    <h2>Navigation &amp; UX</h2>
+  <!-- 2. Infrastruktur -->
+  <div class="slide" data-title="Infrastruktur & beroenden">
+    <div class="slide-label">Grund</div>
+    <h2>Infrastruktur &amp; beroenden</h2>
+    <p>Projektet fick ett rejält lyft i teknisk bas innan nya features kunde byggas.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Frontend (Munin)</h3>
+        <ul>
+          <li>React uppgraderat till <strong>18.3</strong></li>
+          <li><code>@mui/styles</code> → <code>@mui/material/styles</code></li>
+          <li>ESLint konfigurerat till <strong>airbnb v19</strong></li>
+          <li><code>react/require-default-props</code> avstängt — kolliderar med React 18.3</li>
+          <li>Oanvända komponenter och console.log städat</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Backend (Yggdrasil)</h3>
+        <ul>
+          <li>Docker Compose med <strong>Caddy</strong> som reverse proxy + automatisk HTTPS</li>
+          <li><strong>MinIO</strong> för bildlagring med eget subdomän</li>
+          <li>Separata dev/prod-ports och compose-filer</li>
+          <li>MongoDB-port stängd externt i prod</li>
+          <li>Seed-script med 15 författare och hundratals böcker</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Säkerhet -->
+  <div class="slide" data-title="Säkerhet & autentisering">
+    <div class="slide-label">Yggdrasil</div>
+    <h2>Säkerhet &amp; autentisering</h2>
+    <p>API:et gick från i princip öppet till fullständigt skyddat med JWT och rollbaserad behörighet.</p>
     <ul>
-      <li>Temaväljarens tre ikonerbaserade knappar (berg, vågor, måne) med MUI Tooltip som visas direkt vid hover</li>
-      <li>Utloggningsknapp som rensar JWT-token och Apollo-cache</li>
-      <li>DataGrid-tabellernas header och footer följer aktivt tema</li>
-      <li>Dynamisk listhöjd som anpassar sig till antal filtrerade rader</li>
+      <li>Alla GraphQL-resolvers skyddas med <code>isAuthenticated</code> via <code>graphql-resolvers</code></li>
+      <li>Raderingsoperationer kräver dessutom <code>isAdmin</code></li>
+      <li>JWT-token skickas som <code>Authorization: Bearer</code>-header vid varje request</li>
+      <li><strong>GraphQL introspection inaktiverat</strong> i produktion — schemat exponeras inte utåt</li>
+      <li>Inloggningsfel ger ett generiskt meddelande — förhindrar <em>username enumeration</em></li>
+      <li>Admin-bootstrapping: <code>signUp</code> accepterar <code>adminSecret</code> vid första uppstart</li>
+      <li>Applikationen vägrar starta utan <code>SECRET</code>-variabeln (fail fast)</li>
+      <li>På klienten: utloggning rensar JWT <em>och</em> Apollo-cachen (<code>client.clearStore()</code>)</li>
     </ul>
-  </section>
+  </div>
 
-  <section>
+  <!-- 4. Bildhantering -->
+  <div class="slide" data-title="Bildhantering & MinIO">
+    <div class="slide-label">Data & lagring</div>
+    <h2>Bildhantering &amp; MinIO</h2>
+    <p>Porträtt och bokomslag fick en genomtänkt och skalbar hantering.</p>
+    <ul>
+      <li>Bilder lagras i <strong>MinIO</strong> (S3-kompatibelt) och exponeras via eget subdomän</li>
+      <li>Databasen sparar bara <strong>filnamnet</strong> — URL:en byggs från miljövariabel <code>REACT_APP_IMAGES_URL</code></li>
+      <li>Standardbilder visas automatiskt när foto saknas (författare och böcker)</li>
+      <li>Porträtten i listorna renderas som <strong>kvadratiska thumbnails</strong> med hover-preview</li>
+      <li>Uppladdning direkt i edit-formulären via <code>useImageUpload</code>-hook</li>
+    </ul>
+  </div>
+
+  <!-- 5. Teman -->
+  <div class="slide" data-title="Designsystem & teman">
+    <div class="slide-label">Design</div>
+    <h2>Designsystem &amp; teman</h2>
+    <p>Från hårdkodad mörkgrön till ett fullständigt dynamiskt temasystem.</p>
+    <div class="chip-row">
+      <span class="chip chip-earth">Earth — varm beige</span>
+      <span class="chip chip-ocean">Ocean — stålblå</span>
+      <span class="chip chip-dark">Dark — lila accent</span>
+    </div>
+    <ul>
+      <li>Alla färger definierade som <strong>CSS custom properties</strong> i <code>_theme-vars.scss</code></li>
+      <li><code>data-theme</code> sätts på <code>body</code> — inga färger i komponenterna</li>
+      <li>Temavalet sparas i <code>localStorage</code> och återställs vid nästa besök</li>
+      <li>Navigation, footer, DataGrid, kort och detaljvyer — allt följer aktivt tema</li>
+      <li>Temaväljarens ikoner (berg, vågor, måne) med MUI Tooltip direkt vid hover</li>
+    </ul>
+  </div>
+
+  <!-- 6. i18n -->
+  <div class="slide" data-title="Tre språk">
+    <div class="slide-label">Lokalisering</div>
+    <h2>Tre språk — fullt genomfört</h2>
+    <p>Hela UI:t är översatt till <strong>italienska, svenska och engelska</strong> med <code>react-i18next</code>.</p>
+    <ul>
+      <li>Navigering, formulärfält, bekräftelsedialoger, felmeddelanden, temaknappar</li>
+      <li>Landsflaggor i headern — klick byter språk och sparas i <code>localStorage</code></li>
+      <li>På mobil: native <code>&lt;select&gt;</code> istället för flaggor (inget hover på touch)</li>
+      <li>CSS Grid (<code>1fr auto 1fr</code>) förhindrar layout shift när text ändrar längd vid språkbyte</li>
+      <li>Alla tre lokaler lever i separata JSON-filer och är komplett täckta</li>
+    </ul>
+  </div>
+
+  <!-- 7. Mobilanpassning -->
+  <div class="slide" data-title="Mobilanpassning">
+    <div class="slide-label">UX</div>
     <h2>Mobilanpassning</h2>
-    <p>
-      Första steget mot <strong>mobile-first</strong>: deprecated media queries ersatta,
-      navigation wrappas och komprimeras på liten skärm, sidmarginaler anpassas.
-    </p>
-    <p>
-      Det stora lyftet: på skärmar under 600 px ersätts DataGrid-tabellerna med en
-      <strong>kortbaserad mobilvy</strong> för både författare och böcker —
-      samma data, en layout byggd för touch. Korten följer aktivt tema via
-      CSS custom properties.
-    </p>
-  </section>
+    <p>Applikationen är byggd för att fungera bra både på desktop och mobil.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Navigation</h3>
+        <ul>
+          <li>Breakpoint utökat till 768 px</li>
+          <li>Språk- och temabyte som native <code>&lt;select&gt;</code> på mobil</li>
+          <li>Grid-layout hindrar knappar att hoppa vid textbredd-ändring</li>
+          <li><code>white-space: nowrap</code> på nav-länkarna</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Listor</h3>
+        <ul>
+          <li>DataGrid ersätts av <strong>kortbaserad mobilvy</strong> under 600 px</li>
+          <li>Separate <code>BookMobileCard</code> och <code>WriterMobileCard</code></li>
+          <li>Korten följer aktivt tema via CSS custom properties</li>
+          <li>Obegränsat antal rader — ingen <code>pageSize</code>-begränsning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <section>
-    <h2>Kodstatistik</h2>
-    <p>
-      <strong>Munin (frontend)</strong> — sedan commit <span class="commit-badge">50d63b6</span>:
-      61 filer ändrade, <strong>+3 526 / −2 293 rader</strong>.
-    </p>
-    <p>
-      <strong>Yggdrasil (backend)</strong> — sedan commit <span class="commit-badge">6538d68</span>:
-      16 filer ändrade, <strong>+4 004 / −2 033 rader</strong>.
-    </p>
-    <p>Netto totalt: ungefär <strong>3 200 rader ny kod</strong> fördelat på båda repon.</p>
-  </section>
+  <!-- 8. Författardetaljvy -->
+  <div class="slide" data-title="Författardetaljvy">
+    <div class="slide-label">Design</div>
+    <h2>Författardetaljvy — kompakt kortdesign</h2>
+    <p>Detaljkortet för en författare designades om från grunden, iterativt.</p>
+    <ul>
+      <li><strong>120 px porträtt</strong> med <code>object-fit: cover</code> och hover-tooltip som visar bilden i originalformat och originalproportioner</li>
+      <li>Namn (h4), landsflagga (21 px) och hemsidelänk inline i en kompakt rad</li>
+      <li>Beskrivningstexten ligger <strong>full bredd</strong> under porträttraden — inga tomma kolumner</li>
+      <li>Redigera-ikon i övre hörnet — edit-läget bäddar in alla fält direkt i kortet</li>
+      <li>Beskrivningsrutan är <strong>vertikalt resizable</strong> med musen</li>
+    </ul>
+  </div>
 
-  <footer>
-    Munin + Yggdrasil &nbsp;·&nbsp; 77 filer &nbsp;·&nbsp; +7 530 / −4 326 rader &nbsp;·&nbsp; en hel del kaffe
-  </footer>
+  <!-- 9. Rich text editor -->
+  <div class="slide" data-title="Rich text-editor">
+    <div class="slide-label">Feature</div>
+    <h2>Rich text-editor för beskrivningar</h2>
+    <p>Enkla formateringsmöjligheter i beskrivningsfälten för både författare och böcker.</p>
+    <ul>
+      <li>Bygger på <strong>Tiptap</strong> — headless, React 18-kompatibel, välunderhållen</li>
+      <li>Toolbar med <strong>B</strong>, <em>I</em> och <u>U</u>-knappar ovanför textfältet</li>
+      <li>Tangentbordsgenvägar: <code>⌘B</code>, <code>⌘I</code>, <code>⌘U</code> fungerar automatiskt</li>
+      <li>Aktiv formatering markeras med highlight i toolbaren</li>
+      <li>Utdata är HTML — renderas med <code>dangerouslySetInnerHTML</code></li>
+      <li>All HTML saniteras med <strong>DOMPurify</strong> innan rendering — XSS-skydd</li>
+      <li>Matchande utseende med övriga MUI outlined-fält</li>
+    </ul>
+  </div>
+
+  <!-- 10. Datamodell -->
+  <div class="slide" data-title="Datamodell & API">
+    <div class="slide-label">Yggdrasil</div>
+    <h2>Datamodell &amp; API-förbättringar</h2>
+    <p>Flera genomgripande förändringar av datamodellen i Yggdrasil.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Beskrivning på Writer</h3>
+        <ul>
+          <li>Nytt fält <code>description</code> på Writer-modellen</li>
+          <li>Tillagt i GraphQL-schema, resolver, mutation och Munin-frontend</li>
+          <li>Radbrytningar bevaras med <code>white-space: pre-wrap</code> (och nu HTML)</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Valfritt förnamn</h3>
+        <ul>
+          <li><code>name</code> gjort icke-obligatoriskt — stödjer ennamnsförfattare som <em>Epiktetos</em></li>
+          <li>Namn visas med <code>filter(Boolean).join(' ')</code> överallt</li>
+          <li>Ändrat i Mongoose-schema, GraphQL-typdefinition och Munin-mutations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Flera författare -->
+  <div class="slide" data-title="Flera författare per bok">
+    <div class="slide-label">Feature</div>
+    <h2>Flera författare per bok</h2>
+    <p>En av de större datamigrationerna — från ett enskilt <code>writerId</code> till en array.</p>
+    <ul>
+      <li><strong>Yggdrasil:</strong> <code>writerId: ObjectId</code> → <code>writerIds: [ObjectId]</code> i Mongoose-modellen</li>
+      <li>GraphQL-schema: <code>writer: Writer!</code> → <code>writers: [Writer!]!</code> på Book-typen</li>
+      <li>Resolver laddar alla författare parallellt via DataLoader</li>
+      <li><strong>Databasmigrering</strong> via <code>mongosh</code> direkt i Docker-containern — befintliga böcker fick <code>writerId</code> kopierat till <code>writerIds: [id]</code></li>
+      <li><strong>Munin:</strong> MUI <code>Autocomplete</code> med <code>multiple</code> i edit-formuläret</li>
+      <li>Bokdetaljvyn visar alla författare kommaseparerade med egna RouterLinks</li>
+    </ul>
+  </div>
+
+  <!-- 12. Avslutning -->
+  <div class="slide slide--title" data-title="Avslutning">
+    <h1>Klart.</h1>
+    <div class="tagline">Och en hel del mer på gång.</div>
+    <div class="repos" style="margin-top: 28px;">
+      Munin &nbsp;·&nbsp; 73 filer ändrade &nbsp;·&nbsp; +29 179 / −2 588 rader<br>
+      Yggdrasil &nbsp;·&nbsp; 26 filer ändrade &nbsp;·&nbsp; +2 847 / −6 807 rader
+    </div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="num">3</div><div class="label">teman</div></div>
+      <div class="stat-box"><div class="num">3</div><div class="label">språk</div></div>
+      <div class="stat-box"><div class="num">∞</div><div class="label">rader i listor</div></div>
+      <div class="stat-box"><div class="num">B I U</div><div class="label">rich text</div></div>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+
+<!-- Navigation -->
+<div id="nav">
+  <div id="slide-counter">1 / 12</div>
+  <div id="slide-title-nav"></div>
+  <div class="nav-group">
+    <div id="dots"></div>
+    <button class="nav-btn" id="btn-prev" disabled>&#8592;</button>
+    <button class="nav-btn" id="btn-next">&#8594;</button>
+  </div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('slide-counter');
+  const titleNav = document.getElementById('slide-title-nav');
+  const fill = document.getElementById('progress-fill');
+  const dotsEl = document.getElementById('dots');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    if (n < 0 || n >= slides.length) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current].classList.remove('exit'), 350);
+    current = n;
+    slides[current].classList.add('active');
+    update();
+  }
+
+  function update() {
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    titleNav.textContent = slides[current].dataset.title || '';
+    fill.style.width = `${((current + 1) / slides.length) * 100}%`;
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === slides.length - 1;
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+  });
+
+  update();
+</script>
 
 </body>
 </html>
