@@ -18,7 +18,7 @@
   padding: 4px 8px 2px;
   border: 1px solid rgba(0, 0, 0, 0.23);
   border-bottom: none;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
   background: var(--color-card-bg, #fff);
 }
 
@@ -29,7 +29,7 @@
 
 .rich-text-editor__content {
   border: 1px solid rgba(0, 0, 0, 0.23);
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
   padding: 12px 14px;
   min-height: 80px;
   cursor: text;
@@ -72,9 +72,13 @@
 
 [data-theme="dark"] .rich-text-editor__toolbar,
 [data-theme="dark"] .rich-text-editor__content {
-  border-color: #2d3748;
+  border-color: rgba(255, 255, 255, 0.23);
   background: #1a1b2e;
   color: #e2e8f0;
+}
+
+[data-theme="dark"] .rich-text-editor__content .tiptap {
+  color-scheme: dark;
 }
 
 [data-theme="dark"] .rich-text-editor__content:hover {
