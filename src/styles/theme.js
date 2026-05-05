@@ -291,9 +291,14 @@ export const oceanTheme = createTheme({
   },
 });
 
-const darkTypography = Object.fromEntries(
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1'].map((k) => [k, { ...sharedConfig.typography[k], color: '#e2e8f0' }]),
-);
+const darkTypography = {
+  ...Object.fromEntries(
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1'].map((k) => [k, { ...sharedConfig.typography[k], color: '#e2e8f0' }]),
+  ),
+  subtitle1: { color: '#e2e8f0' },
+  subtitle2: { color: '#94a3b8' },
+  body2: { ...sharedConfig.typography.body2, color: '#94a3b8' },
+};
 
 export const darkTheme = createTheme({
   ...sharedConfig,
