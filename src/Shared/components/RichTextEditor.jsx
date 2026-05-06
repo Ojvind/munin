@@ -9,11 +9,11 @@ import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import './RichTextEditor.css';
 
-function RichTextEditor({ label, value, onChange }) {
+function RichTextEditor({ label = '', value = '', onChange }) {
   const editor = useEditor({
     extensions: [
-      StarterKit,
-      Underline,
+      StarterKit.configure(),
+      Underline.configure(),
     ],
     content: value,
     onUpdate: ({ editor: e }) => {
@@ -59,11 +59,6 @@ RichTextEditor.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-};
-
-RichTextEditor.defaultProps = {
-  label: '',
-  value: '',
 };
 
 export default RichTextEditor;
