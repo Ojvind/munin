@@ -333,6 +333,23 @@ export const darkTheme = createTheme({
   },
   components: {
     ...sharedComponentOverrides,
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          color: '#b0bec5',
+          '&.Mui-focused': {
+            color: '#7c6fcd',
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          color: '#e2e8f0',
+        },
+      },
+    },
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
