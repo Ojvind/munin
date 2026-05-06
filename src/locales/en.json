@@ -39,7 +39,13 @@
       "url": "URL",
       "description": "Description",
       "yearPublished": "Year published",
-      "yearRead": "Year read"
+      "yearRead": "Year read",
+      "wantToRead": "Want to read"
+    },
+    "filter": {
+      "all": "All",
+      "wantToRead": "Want to read",
+      "read": "Read"
     },
     "detail": {
       "publishedAndRead": "This book was published in {{yearPublished}} and I read it in {{yearRead}}"

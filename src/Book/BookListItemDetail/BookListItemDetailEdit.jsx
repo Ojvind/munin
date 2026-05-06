@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { useMutation, useQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
 import SaveButton from '../../Shared/components/SaveButton';
 import RichTextEditor from '../../Shared/components/RichTextEditor';
@@ -28,6 +31,8 @@ function BookListItemDetailEdit({
   onDescriptionChange,
   writerIds,
   onWriterIdsChange,
+  wantToRead,
+  onWantToReadChange,
   portraitimageurl,
   fileUploadRef,
   handleImageUpload,
@@ -35,6 +40,7 @@ function BookListItemDetailEdit({
   toggleEdit,
   edit,
 }) {
+  const { t } = useTranslation();
   const { data: writersData } = useQuery(GET_WRITERS);
   const allWriters = writersData?.writers?.edges || [];
 
@@ -57,6 +63,7 @@ function BookListItemDetailEdit({
           url,
           yearPublished,
           yearRead,
+          wantToRead,
           description,
           portraitimageurl,
         },
@@ -89,11 +96,23 @@ function BookListItemDetailEdit({
         />
       </form>
       <br />
+      <FormControlLabel
+        control={(
+          <Switch
+            checked={wantToRead}
+            onChange={(e) => onWantToReadChange(e.target.checked)}
+          />
+        )}
+        label={t('book.fields.wantToRead')}
+        sx={{ m: 1 }}
+      />
       <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Titolo" value={title} />
       <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="URL" value={url} />
       <RichTextEditor label="Descrizione" value={description} onChange={onDescriptionChange} />
       <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Anno di pubblicazione" value={yearPublished} />
-      <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Ho letto il libro nel" value={yearRead} />
+      {!wantToRead && (
+        <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Ho letto il libro nel" value={yearRead} />
+      )}
       <Autocomplete
         multiple
         options={allWriters}
@@ -102,6 +121,11 @@ function BookListItemDetailEdit({
         onChange={(_e, selected) => onWriterIdsChange(selected.map((w) => w.id))}
         isOptionEqualToValue={(option, value) => option.id === value.id}
         sx={{ m: 1, width: 'calc(100% - 16px)' }}
+        renderOption={(props, option) => {
+          // eslint-disable-next-line react/prop-types
+          const { key, ...rest } = props;
+          return <li key={key} {...rest}>{[option.name, option.surname].filter(Boolean).join(' ')}</li>; // eslint-disable-line react/jsx-props-no-spreading
+        }}
         renderInput={(params) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <TextField {...params} label="Författare" variant="outlined" />
@@ -149,6 +173,8 @@ BookListItemDetailEdit.propTypes = {
   onDescriptionChange: PropTypes.func.isRequired,
   writerIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   onWriterIdsChange: PropTypes.func.isRequired,
+  wantToRead: PropTypes.bool.isRequired,
+  onWantToReadChange: PropTypes.func.isRequired,
   portraitimageurl: PropTypes.string,
   fileUploadRef: PropTypes.shape({
     current: PropTypes.oneOfType([

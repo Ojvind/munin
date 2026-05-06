@@ -39,7 +39,13 @@
       "url": "URL",
       "description": "Beskrivning",
       "yearPublished": "Publiceringsår",
-      "yearRead": "Läste boken år"
+      "yearRead": "Läste boken år",
+      "wantToRead": "Vill läsa"
+    },
+    "filter": {
+      "all": "Alla",
+      "wantToRead": "Vill läsa",
+      "read": "Lästa"
     },
     "detail": {
       "publishedAndRead": "Denna bok publicerades {{yearPublished}} och jag läste den {{yearRead}}"

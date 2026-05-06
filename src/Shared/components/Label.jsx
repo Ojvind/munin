@@ -16,11 +16,11 @@ const HtmlTooltip = styled(Tooltip)(({ theme }) => ({
 }));
 
 const Label = ({
-  variant,
-  isLink,
-  url,
-  className,
-  toolTip, // eslint-disable-line no-unused-vars
+  variant = 'h1',
+  isLink = false,
+  url = '',
+  className = '', // eslint-disable-line no-unused-vars
+  toolTip = '', // eslint-disable-line no-unused-vars
   children,
   ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => {
@@ -71,14 +71,6 @@ Label.propTypes = {
   toolTip: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string.isRequired,
-};
-
-Label.defaultProps = {
-  variant: 'h1',
-  isLink: false,
-  url: '',
-  toolTip: '',
-  className: '',
 };
 
 export default Label;

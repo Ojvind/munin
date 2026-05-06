@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import DefaultImage from '../../../assets/default-book.svg';
 import DeleteBookMutation from '../../DeleteBook';
 import BookUrlCell from './BookUrlCell';
@@ -27,6 +28,7 @@ const BookMobileCard = ({ book }) => {
           {book.title}
         </Link>
         <span className="mobile-card__meta">
+          {book.wantToRead && <BookmarkIcon fontSize="inherit" color="primary" sx={{ verticalAlign: 'middle', mr: 0.5 }} />}
           {book.yearPublished}
           {book.yearRead ? ` · ${book.yearRead}` : ''}
         </span>
@@ -46,9 +48,10 @@ BookMobileCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     url: PropTypes.string,
-    yearPublished: PropTypes.number,
-    yearRead: PropTypes.number,
+    yearPublished: PropTypes.string,
+    yearRead: PropTypes.string,
     portraitimageurl: PropTypes.string,
+    wantToRead: PropTypes.bool,
     writers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
     })),

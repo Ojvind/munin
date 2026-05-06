@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 
 const Input = ({
-  id,
-  name,
-  inputLabel,
-  // validated,
-  // valid,
-  multiline,
-  // shouldCustomValidate,
-  // customValid,
+  id = null, // eslint-disable-line no-unused-vars
+  name = null,
+  inputLabel = '',
+  multiline = false,
   ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => (
   <>
@@ -50,17 +46,6 @@ Input.propTypes = {
   multiline: PropTypes.bool,
   // shouldCustomValidate: PropTypes.bool,
   // customValid: PropTypes.bool,
-};
-
-Input.defaultProps = {
-  id: null,
-  name: null,
-  inputLabel: '',
-  // validated: false,
-  // valid: null,
-  multiline: false,
-  // shouldCustomValidate: false,
-  // customValid: undefined,
 };
 
 export default Input;

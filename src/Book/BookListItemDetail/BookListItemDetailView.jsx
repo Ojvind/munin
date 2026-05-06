@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Chip from '@mui/material/Chip';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Label from '../../Shared/components/Label';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
@@ -10,12 +12,13 @@ const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
 
 function BookListItemDetailView({
   book,
-  avatarURL,
-  description,
-  yearPublished,
-  yearRead,
-  url,
-  title,
+  avatarURL = '',
+  description = '',
+  yearPublished = '',
+  yearRead = '',
+  url = '',
+  title = '',
+  wantToRead = false,
 }) {
   const { t } = useTranslation();
   return (
@@ -29,6 +32,15 @@ function BookListItemDetailView({
           />
         </div>
         <div className="list-item-detail__row__column">
+          {wantToRead && (
+            <Chip
+              icon={<BookmarkIcon />}
+              label={t('book.fields.wantToRead')}
+              size="small"
+              color="primary"
+              sx={{ mb: 1 }}
+            />
+          )}
           <Label variant="subtitle2">
             {`${t('book.fields.title')}:`}
           </Label>
@@ -63,9 +75,16 @@ function BookListItemDetailView({
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }} />
           <br />
-          <Label variant="h6">
-            {t('book.detail.publishedAndRead', { yearPublished, yearRead })}
-          </Label>
+          {!wantToRead && (
+            <Label variant="h6">
+              {t('book.detail.publishedAndRead', { yearPublished, yearRead })}
+            </Label>
+          )}
+          {wantToRead && yearPublished && (
+            <Label variant="h6">
+              {yearPublished}
+            </Label>
+          )}
         </div>
       </div>
     </div>
@@ -93,15 +112,7 @@ BookListItemDetailView.propTypes = {
   yearRead: PropTypes.string,
   url: PropTypes.string,
   title: PropTypes.string,
-};
-
-BookListItemDetailView.defaultProps = {
-  avatarURL: '',
-  description: '',
-  yearPublished: '',
-  yearRead: '',
-  url: '',
-  title: '',
+  wantToRead: PropTypes.bool,
 };
 
 export default BookListItemDetailView;

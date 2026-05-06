@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 const Container = React.forwardRef(({ children }, ref) => (
   <Box
     ref={ref}
+    tabIndex={-1}
     sx={{
       position: 'absolute',
       top: '50%',

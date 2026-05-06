@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookImageCell from '../components/BookImageCell';
 import BookUrlCell from '../components/BookUrlCell';
 import BookDeleteCell from '../components/BookDeleteCell';
@@ -38,6 +39,17 @@ const useBookColumns = () => {
       disableColumnMenu: true,
       align: 'center',
       renderCell: (params) => <BookUrlCell params={params} />,
+    },
+    {
+      field: 'wantToRead',
+      headerName: ' ',
+      width: 50,
+      sortable: false,
+      disableColumnMenu: true,
+      align: 'center',
+      renderCell: (params) => (params.row.wantToRead
+        ? <BookmarkIcon fontSize="small" color="primary" />
+        : null),
     },
     { field: 'yearPublished', headerName: t('book.fields.yearPublished'), width: 80 },
     { field: 'yearRead', headerName: t('book.fields.yearRead'), width: 80 },
