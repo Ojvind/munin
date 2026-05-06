@@ -64,17 +64,17 @@ const CreateBook = ({ writerId = null, initialWantToRead = false, onSuccess = nu
   return (
     <div>
       <Label variant="h4">
-        Nuovo libro
+        {t('book.createNew')}
       </Label>
       <div className="create-book">
         <div className="create-book__input">
-          <Input onChange={(e) => onTitleChange(e.target.value)} id="titolo" inputLabel="Titolo" />
+          <Input onChange={(e) => onTitleChange(e.target.value)} id="title" inputLabel={t('book.fields.title')} />
         </div>
         <div className="create-book__input">
-          <Input onChange={(e) => onUrlChange(e.target.value)} id="url" inputLabel="Url" />
+          <Input onChange={(e) => onUrlChange(e.target.value)} id="url" inputLabel={t('book.fields.url')} />
         </div>
         <div className="create-book__input">
-          <Input onChange={(e) => onYearPublishedChange(e.target.value)} id="anno_di_pubblicazione" inputLabel="Anno di pubblicazione" />
+          <Input onChange={(e) => onYearPublishedChange(e.target.value)} id="year_published" inputLabel={t('book.fields.yearPublished')} />
         </div>
         {!writerId && (
           <div className="create-book__input">
@@ -120,15 +120,15 @@ const CreateBook = ({ writerId = null, initialWantToRead = false, onSuccess = nu
         </div>
         {!wantToRead && (
           <div className="create-book__input">
-            <Input onChange={(e) => onReadChange(e.target.value)} id="ho_letto_il_libro_nel" inputLabel="Ho letto il libro nel" />
+            <Input onChange={(e) => onReadChange(e.target.value)} id="year_read" inputLabel={t('book.fields.yearRead')} />
           </div>
         )}
         <div className="create-book__input">
-          <Input onChange={(e) => onDecriptionChange(e.target.value)} id="descrizione" inputLabel="Descrizione" />
+          <Input onChange={(e) => onDecriptionChange(e.target.value)} id="description" inputLabel={t('book.fields.description')} />
         </div>
         <div className="create-book__button">
           <SaveButton onClick={handleSave} disabled={loading}>
-            Salva
+            {t('common.save')}
           </SaveButton>
         </div>
         {error && (

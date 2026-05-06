@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import Input from '../../Shared/components/Input';
+import Label from '../../Shared/components/Label';
 import SaveButton from '../../Shared/components/SaveButton';
 import RichTextEditor from '../../Shared/components/RichTextEditor';
 import { CREATE_WRITER } from '../mutations';
@@ -11,6 +13,7 @@ import './create-writer.css';
 import ErrorMessage from '../../Error';
 
 function CreateWriter({ onSuccess }) {
+  const { t } = useTranslation();
   const [name, onNameChange] = useState('');
   const [surname, onSurnameChange] = useState('');
   const [homepage, onHomepageChange] = useState('');
@@ -42,25 +45,26 @@ function CreateWriter({ onSuccess }) {
 
   return (
     <div>
+      <Label variant="h4">{t('writer.createNew')}</Label>
       <div className="create-writer">
         <div className="create-writer__input">
-          <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Nome" />
+          <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel={t('writer.fields.name')} />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Cognome" />
+          <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel={t('writer.fields.surname')} />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" />
+          <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel={t('writer.fields.homepage')} />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" />
+          <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel={t('writer.fields.nationality')} />
         </div>
         <div className="create-writer__input">
-          <RichTextEditor label="Descrizione" value={description} onChange={onDescriptionChange} />
+          <RichTextEditor label={t('writer.fields.description')} value={description} onChange={onDescriptionChange} />
         </div>
         <div className="create-writer__button">
           <SaveButton onClick={handleSave} disabled={loading}>
-            Salva
+            {t('common.save')}
           </SaveButton>
         </div>
         {error && (
