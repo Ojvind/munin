@@ -17,6 +17,7 @@ import { GET_WRITERS } from '../../Writer/queries';
 import Input from '../../Shared/components/Input';
 import Label from '../../Shared/components/Label';
 import SaveButton from '../../Shared/components/SaveButton';
+import RichTextEditor from '../../Shared/components/RichTextEditor';
 import ErrorMessage from '../../Error';
 
 const CreateBook = ({ writerId = null, initialWantToRead = false, onSuccess = null }) => {
@@ -124,7 +125,7 @@ const CreateBook = ({ writerId = null, initialWantToRead = false, onSuccess = nu
           </div>
         )}
         <div className="create-book__input">
-          <Input onChange={(e) => onDecriptionChange(e.target.value)} id="description" inputLabel={t('book.fields.description')} />
+          <RichTextEditor label={t('book.fields.description')} value={description} onChange={onDecriptionChange} />
         </div>
         <div className="create-book__button">
           <SaveButton onClick={handleSave} disabled={loading}>
