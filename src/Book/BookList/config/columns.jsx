@@ -30,6 +30,12 @@ const useBookColumns = () => {
       headerName: t('book.fields.title'),
       flex: 1,
       minWidth: 150,
+      renderCell: (params) => (
+        <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {params.row.wantToRead && <BookmarkIcon fontSize="small" color="primary" style={{ flexShrink: 0 }} />}
+          {params.row.title}
+        </span>
+      ),
     },
     {
       field: 'url',
@@ -39,17 +45,6 @@ const useBookColumns = () => {
       disableColumnMenu: true,
       align: 'center',
       renderCell: (params) => <BookUrlCell params={params} />,
-    },
-    {
-      field: 'wantToRead',
-      headerName: ' ',
-      width: 50,
-      sortable: false,
-      disableColumnMenu: true,
-      align: 'center',
-      renderCell: (params) => (params.row.wantToRead
-        ? <BookmarkIcon fontSize="small" color="primary" />
-        : null),
     },
     { field: 'yearPublished', headerName: t('book.fields.yearPublished'), width: 80 },
     { field: 'yearRead', headerName: t('book.fields.yearRead'), width: 80 },
