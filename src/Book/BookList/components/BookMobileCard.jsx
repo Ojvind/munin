@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import Chip from '@mui/material/Chip';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import DefaultImage from '../../../assets/default-book.svg';
 import DeleteBookMutation from '../../DeleteBook';
@@ -9,6 +11,7 @@ import BookUrlCell from './BookUrlCell';
 const IMAGES_URL = process.env.REACT_APP_IMAGES_URL;
 
 const BookMobileCard = ({ book }) => {
+  const { t } = useTranslation();
   const src = book.portraitimageurl
     ? `${IMAGES_URL}/${book.portraitimageurl}`
     : DefaultImage;
@@ -28,7 +31,16 @@ const BookMobileCard = ({ book }) => {
           {book.title}
         </Link>
         <span className="mobile-card__meta">
-          {book.wantToRead && <BookmarkIcon fontSize="inherit" color="primary" sx={{ verticalAlign: 'middle', mr: 0.5 }} />}
+          {book.wantToRead && (
+            <Chip
+              icon={<BookmarkIcon />}
+              label={t('book.fields.wantToRead')}
+              size="small"
+              color="primary"
+              variant="outlined"
+              sx={{ mr: 0.5, verticalAlign: 'middle' }}
+            />
+          )}
           {book.yearPublished}
           {book.yearRead ? ` · ${book.yearRead}` : ''}
         </span>

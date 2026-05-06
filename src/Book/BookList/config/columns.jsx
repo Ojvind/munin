@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
+import Chip from '@mui/material/Chip';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookImageCell from '../components/BookImageCell';
 import BookUrlCell from '../components/BookUrlCell';
@@ -31,9 +32,18 @@ const useBookColumns = () => {
       flex: 1,
       minWidth: 150,
       renderCell: (params) => (
-        <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          {params.row.wantToRead && <BookmarkIcon fontSize="small" color="primary" style={{ flexShrink: 0 }} />}
+        <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {params.row.title}
+          {params.row.wantToRead && (
+            <Chip
+              icon={<BookmarkIcon />}
+              label={t('book.fields.wantToRead')}
+              size="small"
+              color="primary"
+              variant="outlined"
+              style={{ flexShrink: 0 }}
+            />
+          )}
         </span>
       ),
     },
