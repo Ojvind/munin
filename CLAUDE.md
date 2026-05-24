@@ -53,6 +53,11 @@ SCSS + MUI. Global variables are in `src/styles/variables/` and imported via `sr
 
 `react-i18next`. Locale files: `src/locales/{en,sv,it}.json`. Use the `useTranslation()` hook and `t()` for all user-facing strings.
 
+## Yggdrasil (backend)
+
+Local path: `~/_code/yggdrasil`  
+GraphQL schema: `~/_code/yggdrasil/src/schema/`
+
 ### Environment variables
 
 | Variable | Purpose |
